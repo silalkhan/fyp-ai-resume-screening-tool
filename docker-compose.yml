@@ -1,0 +1,91 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/resume-screening
+      - NLP_API_URL=http://nlp:5002/api
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  nlp:
+    build: ./nlp
+    ports:
+      - "5002:5002"
+    depends_on:
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    volumes:
+      - ./nlp:/app
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  celery-worker:
+    build: ./nlp
+    command: celery -A celery_config worker --loglevel=info
+    environment:
+      - PYTHONUNBUFFERED=1
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    volumes:
+      - ./nlp:/app
+    networks:
+      - app-network
+    depends_on:
+      - redis
+      - nlp
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+      - REACT_APP_NLP_API_URL=http://localhost:5002/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - app-network
+    depends_on:
+      - backend
+      - nlp
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge

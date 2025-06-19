@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "your-collection-id",
+    "name": "Resume Screening API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Job Descriptions",
+      "item": [
+        {
+          "name": "Get All Jobs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/jobs",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "jobs"]
+            }
+          }
+        },
+        {
+          "name": "Get Job By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/jobs/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "jobs", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Resumes",
+      "item": [
+        {
+          "name": "Upload Resume",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:5000/api/resumes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "resumes"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "resume",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "jobDescriptionId",
+                  "value": "",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Resumes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/resumes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "resumes"]
+            }
+          }
+        },
+        {
+          "name": "Get Resume By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/resumes/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "resumes", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Compare Resume to Job",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "http://localhost:5000/api/resumes/:resumeId/compare/:jobDescriptionId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["api", "resumes", ":resumeId", "compare", ":jobDescriptionId"],
+              "variable": [
+                {
+                  "key": "resumeId",
+                  "value": ""
+                },
+                {
+                  "key": "jobDescriptionId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

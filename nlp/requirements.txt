@@ -1,0 +1,21 @@
+numpy
+flask
+flask-cors
+spacy
+python-docx
+PyPDF2
+pdf2image
+pytesseract
+scikit-learn
+sentence-transformers
+werkzeug
+flask-restx
+celery
+redis
+pytest
+pytest-flask
+docx2txt 
+textract
+six
+
+#pip install -r requirements.txt

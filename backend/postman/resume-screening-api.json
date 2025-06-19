@@ -1,0 +1,237 @@
+{
+  "info": {
+    "name": "AI Resume Screening API",
+    "description": "API endpoints for AI-driven resume screening tool",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Job Descriptions",
+      "item": [
+        {
+          "name": "Create Job Description",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Full Stack Developer\",\n  \"category\": \"Web Developer\",\n  \"description\": \"We are looking for a Full Stack Developer who is proficient with React.js and Node.js. The ideal candidate should have experience with modern frontend frameworks and backend technologies.\",\n  \"requiredSkills\": [\"JavaScript\", \"React.js\", \"Node.js\", \"MongoDB\", \"Express.js\", \"Git\"],\n  \"preferredSkills\": [\"TypeScript\", \"Docker\", \"AWS\", \"Jest\"],\n  \"requiredExperience\": 2\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/job-descriptions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "job-descriptions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Job Descriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/job-descriptions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "job-descriptions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Job Description by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/job-descriptions/{{jobDescriptionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "job-descriptions", "{{jobDescriptionId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Job Description",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Senior Full Stack Developer\",\n  \"requiredExperience\": 4\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/job-descriptions/{{jobDescriptionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "job-descriptions", "{{jobDescriptionId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Job Description",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/job-descriptions/{{jobDescriptionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "job-descriptions", "{{jobDescriptionId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Resumes",
+      "item": [
+        {
+          "name": "Upload Resume",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "resume",
+                  "type": "file",
+                  "src": "/path/to/resume.pdf"
+                },
+                {
+                  "key": "jobDescriptionId",
+                  "value": "{{jobDescriptionId}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resumes/upload",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "resumes", "upload"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Resumes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/resumes",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "resumes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Resumes by Job Description",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/resumes?jobDescriptionId={{jobDescriptionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "resumes"],
+              "query": [
+                {
+                  "key": "jobDescriptionId",
+                  "value": "{{jobDescriptionId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Resume by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/resumes/{{resumeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "resumes", "{{resumeId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Process Resume",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobDescriptionId\": \"{{jobDescriptionId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/resumes/{{resumeId}}/process",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "resumes", "{{resumeId}}", "process"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Shortlisted Resumes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/resumes/shortlisted/{{jobDescriptionId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "resumes", "shortlisted", "{{jobDescriptionId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Resume",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/resumes/{{resumeId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "resumes", "{{resumeId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "jobDescriptionId",
+      "value": "your-job-description-id"
+    },
+    {
+      "key": "resumeId",
+      "value": "your-resume-id"
+    }
+  ]
+}

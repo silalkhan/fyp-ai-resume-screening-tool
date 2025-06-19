@@ -1,0 +1,10 @@
+{
+  "git.ignoreLimitWarning": true,
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/nlp/venv/lib/python3.12/site-packages"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/nlp/venv/lib/python3.12/site-packages"
+  ],
+  "python.defaultInterpreterPath": "${workspaceFolder}/nlp/venv/bin/python"
+}
