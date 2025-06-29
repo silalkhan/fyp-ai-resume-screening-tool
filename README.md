@@ -4,14 +4,15 @@ An intelligent web application for automated resume screening against job descri
 
 ## Academic Context
 
-This project is a Final Year Project (2024-2025) for the Bachelor's degree in Computer Science at the University of Engineering & Technology Peshawar, Jalozai Campus.
+This project is a Final Year Project for the Bachelor's degree in Computer Science at the University of Engineering & Technology Peshawar, Jalozai Campus.
 
 **Student Information:**
 
 - **Name:** Silal Khan
 - **Department:** Computer Science & IT
 - **Institution:** UET Peshawar, Jalozai Campus
-- **Project Duration:** 2024-2025 (Final Semester)
+- **Batch:** 2021-2025
+- **Project Duration:** Final Year (8th Semester)
 
 ## Project Overview
 
@@ -189,7 +190,7 @@ This is an academic project developed as part of final year studies. While it's 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the (LICENSE) file for details.
 
 ## Acknowledgments
 
