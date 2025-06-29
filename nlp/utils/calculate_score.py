@@ -2,6 +2,7 @@ from sentence_transformers import SentenceTransformer, util
 import numpy as np
 import re
 import logging
+from .sbert_scorer import calculate_match_score as sbert_calculate_score
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -13,7 +14,6 @@ try:
     logger.info("SBERT model loaded successfully")
 except Exception as e:
     logger.error(f"Error loading SBERT model: {str(e)}")
-    model = None
     model = None
 
 # Map frontend/backend category names to internal NLP category keys
@@ -126,6 +126,11 @@ def calculate_match_score(resume_text, job_description, resume_skills, job_skill
         Match score (0-100)
     """
     try:
+        # Add debug logging for SBERT model
+        logger.info(f"SBERT model status: {'Loaded' if model is not None else 'Not loaded'}")
+        if model is None:
+            logger.error("SBERT model is None! This will affect score calculation.")
+            
         if not resume_text or not resume_text.strip():
             logger.warning("Empty resume text provided")
             return 20  # Return low score for empty resume
@@ -156,17 +161,32 @@ def calculate_match_score(resume_text, job_description, resume_skills, job_skill
         
         # Calculate text similarity using SBERT
         text_similarity_score = 0
-        if job_description and resume_text and model is not None:
+        if job_description and resume_text:
             # Clean and normalize text
             clean_resume = ' '.join(resume_text.lower().split())
             clean_job = ' '.join(job_description.lower().split())
             
             # Encode and calculate similarity
             try:
-                embeddings = model.encode([clean_resume, clean_job], convert_to_tensor=True)
-                similarity = float(util.cos_sim(embeddings[0], embeddings[1]).item())
-                text_similarity_score = similarity * 100
-                logger.info(f"Text similarity score: {text_similarity_score:.2f}")
+                if model is not None:
+                    embeddings = model.encode([clean_resume, clean_job], convert_to_tensor=True)
+                    similarity = float(util.cos_sim(embeddings[0], embeddings[1]).item())
+                    text_similarity_score = similarity * 100
+                    logger.info(f"Text similarity score (primary model): {text_similarity_score:.2f}")
+                else:
+                    # Try using the backup SBERT scorer
+                    try:
+                        logger.info("Using backup SBERT scorer")
+                        text_similarity_score = sbert_calculate_score(clean_resume, clean_job)
+                        logger.info(f"Text similarity score (backup model): {text_similarity_score:.2f}")
+                    except Exception as backup_error:
+                        logger.error(f"Backup SBERT scorer failed: {str(backup_error)}")
+                        # Fall back to basic word matching
+                        resume_words = set(clean_resume.split())
+                        job_words = set(clean_job.split())
+                        common_words = resume_words.intersection(job_words)
+                        text_similarity_score = len(common_words) / len(job_words) * 50 if job_words else 30
+                        logger.info(f"Fallback text similarity score: {text_similarity_score:.2f}")
             except Exception as e:
                 logger.error(f"Error calculating SBERT similarity: {str(e)}")
                 # Fallback to basic word matching if SBERT fails
@@ -252,6 +272,11 @@ def calculate_match_score(resume_text, job_description, resume_skills, job_skill
         
         final_score = min(round(score + variability, 1), 100.0)
         final_score = max(final_score, 15.0)  # Minimum score floor
+        
+        # Ensure the score is a valid number
+        if not isinstance(final_score, (int, float)) or np.isnan(final_score):
+            logger.error(f"Invalid score calculated: {final_score}, using default")
+            final_score = 50.0  # Use a middle-range default score
         
         logger.info(f"Final match score: {final_score:.1f}")
         return final_score

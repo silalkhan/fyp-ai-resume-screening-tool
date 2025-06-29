@@ -5,6 +5,7 @@ Celery configuration for NLP Resume Screening Tool
 
 import os
 import sys
+import socket
 
 # Add error handling for celery import
 try:
@@ -16,9 +17,51 @@ except ImportError as e:
     print("pip install celery")
     sys.exit(1)
 
-# Get broker and backend URLs from environment or use defaults
-broker_url = os.environ.get('CELERY_BROKER_URL', 'redis://localhost:6379/0')
-result_backend = os.environ.get('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
+# Define potential Redis hosts to try (in order of preference)
+redis_hosts = [
+    'localhost',          # Standard localhost
+    '127.0.0.1',          # IPv4 localhost
+    '172.17.0.1',         # Common Docker bridge
+    '192.168.1.1',        # Common WSL2 host address
+    '::1',                # IPv6 localhost
+    # Add any potential WSL IP address here
+    os.environ.get('WSL_HOST_IP', '')  # Use environment variable if set
+]
+
+# Filter out empty values
+redis_hosts = [h for h in redis_hosts if h]
+
+# Get broker and backend URLs from environment or try multiple hosts
+broker_url = os.environ.get('CELERY_BROKER_URL')
+result_backend = os.environ.get('CELERY_RESULT_BACKEND')
+
+if not broker_url:
+    # Try to find a working Redis server
+    for host in redis_hosts:
+        try:
+            # Try to connect to Redis
+            import redis
+            test_url = f'redis://{host}:6379/0'
+            print(f"Testing Redis connection to: {test_url}")
+            
+            r = redis.Redis.from_url(test_url)
+            r.ping()  # Will raise an exception if connection fails
+            
+            # If successful, use this host
+            broker_url = test_url
+            result_backend = test_url
+            print(f"✓ Successfully connected to Redis at {host}")
+            break
+        except Exception as e:
+            print(f"Cannot connect to Redis at {host}: {e}")
+    
+    # If all attempts failed, fall back to default
+    if not broker_url:
+        print("! Could not find working Redis server, using localhost as fallback")
+        broker_url = 'redis://localhost:6379/0'
+        result_backend = 'redis://localhost:6379/0'
+else:
+    print(f"Using environment-provided Redis URL: {broker_url}")
 
 # Create Celery application
 app = Celery(

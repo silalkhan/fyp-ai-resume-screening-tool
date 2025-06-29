@@ -15,6 +15,9 @@ export const processResumeData = (resume: Resume): Resume => {
     return resume;
   }
 
+  // Add debugging for match score
+  console.log("processResumeData - Original matchScore:", resume.matchScore);
+
   const processedResume = { ...resume };
 
   // Handle processing state
@@ -38,9 +41,31 @@ export const processResumeData = (resume: Resume): Resume => {
   }
 
   // Make sure processed flag is set and processing is false when we have data
-  if (processedResume.processedData) {
+  if (processedResume.processedData || processedResume.matchScore) {
     processedResume.processed = true;
     processedResume.processing = false;
+  }
+
+  // Ensure matchScore is preserved
+  if (resume.matchScore !== undefined && resume.matchScore !== null) {
+    processedResume.matchScore = resume.matchScore;
+  } else if (!processedResume.matchScore) {
+    // If no match score is available, set a default
+    console.warn("No match score found in resume data, using default");
+    processedResume.matchScore = 0;
+  }
+
+  // Create empty processedData if missing but we have a matchScore
+  if (!processedResume.processedData && processedResume.matchScore) {
+    console.log(
+      "Creating minimal processedData structure for resume with matchScore"
+    );
+    processedResume.processedData = {
+      skills: [],
+      education: [],
+      experience: [],
+      projects: [],
+    };
   }
 
   const originalProcessedData = processedResume.processedData;
@@ -71,6 +96,12 @@ export const processResumeData = (resume: Resume): Resume => {
   processedResume.processed = true;
   processedResume.processing = false;
   processedResume.processingError = null;
+
+  // Final debugging for match score
+  console.log(
+    "processResumeData - Final matchScore:",
+    processedResume.matchScore
+  );
 
   return processedResume;
 };
@@ -555,14 +586,41 @@ const SKILL_SYNONYMS: { [key: string]: string[] } = {
 export const categorizeSkills = (
   resume: Resume
 ): { matchedSkills: string[]; unmatchedSkills: string[] } => {
-  if (
-    !resume ||
-    !resume.processedData?.skills ||
-    !resume.jobDescription?.requiredSkills
-  ) {
+  if (!resume || !resume.processedData?.skills) {
     return {
       matchedSkills: [],
       unmatchedSkills: resume?.processedData?.skills || [],
+    };
+  }
+
+  // Extract required skills from either the jobDescription object or directly from resume properties
+  let requiredSkills: string[] = [];
+
+  // First try to get skills from the jobDescription object
+  if (resume.jobDescription?.requiredSkills) {
+    requiredSkills = resume.jobDescription.requiredSkills;
+    console.log("Using skills from jobDescription object:", requiredSkills);
+  }
+  // If no skills found, try to extract from other potential properties
+  else if (resume.jobDescriptionId) {
+    console.log(
+      "No job description object found, but have jobDescriptionId:",
+      resume.jobDescriptionId
+    );
+    // At this point, we don't have required skills, but we'll use the detected skills for display
+    return {
+      matchedSkills: resume.processedData.skills,
+      unmatchedSkills: [],
+    };
+  }
+
+  if (requiredSkills.length === 0) {
+    console.log(
+      "No required skills found in job description, showing all skills as matched"
+    );
+    return {
+      matchedSkills: resume.processedData.skills,
+      unmatchedSkills: [],
     };
   }
 
@@ -572,12 +630,10 @@ export const categorizeSkills = (
     normalized: normalizeSkill(skill),
   }));
 
-  const normalizedRequiredSkills = resume.jobDescription.requiredSkills.map(
-    (skill) => ({
-      original: skill,
-      normalized: normalizeSkill(skill),
-    })
-  );
+  const normalizedRequiredSkills = requiredSkills.map((skill) => ({
+    original: skill,
+    normalized: normalizeSkill(skill),
+  }));
 
   // Create an array of required skills and their variations
   const requiredSkillVariations: Array<{

@@ -244,72 +244,84 @@ export const getResumeById = async (id: string) => {
     }
 
     console.log("Fetching resume with ID:", id);
-    const response = await api.get(`/resumes/${id}`);
-    console.log("Get resume by ID response:", response.data);
 
-    if (!response.data) {
-      throw new Error("No resume data received from server");
+    try {
+      const response = await api.get(`/resumes/${id}`);
+      console.log("Get resume by ID response:", response.data);
+
+      if (!response.data || !response.data.success) {
+        throw new Error(
+          response.data?.message || "Failed to fetch resume data"
+        );
+      }
+
+      const resumeData = response.data.data;
+
+      // Add minimal processed structure if we have a matchScore but no processedData
+      if (resumeData && resumeData.matchScore && !resumeData.processedData) {
+        console.log(
+          "Resume has matchScore but no processedData, creating minimal structure"
+        );
+        resumeData.processedData = {
+          skills: [],
+          education: [],
+          experience: [],
+          projects: [],
+        };
+        resumeData.processed = true;
+        resumeData.processing = false;
+      }
+
+      // If we have a job description ID, fetch the associated job description
+      if (resumeData && resumeData.jobDescriptionId) {
+        try {
+          const jobDescResponse = await getJobDescriptionById(
+            resumeData.jobDescriptionId
+          );
+          if (jobDescResponse.success && jobDescResponse.data) {
+            resumeData.jobDescription = jobDescResponse.data;
+          }
+        } catch (err) {
+          console.error(
+            `Failed to fetch job description ${resumeData.jobDescriptionId}:`,
+            err
+          );
+          // Don't fail the whole request if job description can't be fetched
+        }
+      }
+
+      return response.data;
+    } catch (apiError: any) {
+      console.error("API error in getResumeById:", apiError);
+
+      // Check for specific error status codes
+      if (apiError.response) {
+        const status = apiError.response.status;
+
+        if (status === 500) {
+          return {
+            success: false,
+            message:
+              "The server encountered an internal error. This could be due to the NLP service being offline.",
+            data: null,
+          };
+        } else if (status === 404) {
+          return {
+            success: false,
+            message:
+              "Resume not found. It may have been deleted or the ID is invalid.",
+            data: null,
+          };
+        }
+      }
+
+      throw apiError; // Re-throw for general error handling
     }
-
-    const resumeData = response.data;
-
-    // Ensure we have a taskId
-    const taskId = resumeData.taskId || resumeData._id;
-    if (!taskId) {
-      throw new Error("Could not determine task ID for this resume");
-    }
-
-    // If we have processed data and it's valid, the resume is complete
-    if (
-      resumeData.processedData &&
-      Object.keys(resumeData.processedData).length > 0 &&
-      !resumeData.processingError &&
-      Array.isArray(resumeData.processedData.skills)
-    ) {
-      console.log("Resume has valid processed data:", resumeData.processedData);
-      return {
-        success: true,
-        data: {
-          ...resumeData,
-          processed: true,
-          processing: false,
-          processingError: null,
-          taskId,
-          matchScore: resumeData.matchScore || 0,
-        },
-      };
-    }
-
-    // If we don't have processed data but have a taskId, it's still processing
-    if (resumeData.taskId || resumeData.status === "processing") {
-      return {
-        success: true,
-        data: {
-          ...resumeData,
-          processed: false,
-          processing: true,
-          processingError: null,
-          taskId: resumeData.taskId || resumeData._id, // Use _id as fallback if no taskId
-        },
-      };
-    }
-
-    // If we don't have a taskId but the resume exists, assume it needs processing
-    return {
-      success: true,
-      data: {
-        ...resumeData,
-        processed: false,
-        processing: true,
-        processingError: null,
-        taskId: resumeData._id, // Use _id as the taskId
-      },
-    };
   } catch (error: any) {
-    console.error(`Error fetching resume ${id}:`, error);
+    console.error("Error fetching resume by ID:", error);
     return {
       success: false,
-      message: error.response?.data?.message || "Failed to fetch resume",
+      message: error.message || "Failed to fetch resume",
       data: null,
     };
   }
@@ -373,6 +385,7 @@ export const checkProcessingStatus = async (taskId: string) => {
   try {
     // First try to get the status from the NLP service
     try {
+      console.log(`Checking NLP service status for task ${taskId}...`);
       const nlpResponse = await nlpApi.get(`/tasks/${taskId}`);
       console.log("NLP status check response:", nlpResponse.data);
 
@@ -387,43 +400,85 @@ export const checkProcessingStatus = async (taskId: string) => {
           return { status: "completed", success: true };
         }
         if (status === "failed" || status === "error") {
-          throw new Error(nlpResponse.data.error || "NLP processing failed");
+          console.warn(
+            "NLP processing reported failure:",
+            nlpResponse.data.error
+          );
+          // Don't throw, continue to backend check as fallback
+        } else {
+          // If state is not failed and we don't have results yet, it's still pending
+          return { status: "pending", success: true };
         }
-        // If state is not failed and we don't have results yet, it's still pending
-        return { status: "pending", success: true };
       }
-    } catch (nlpError) {
+    } catch (error) {
+      const nlpError = error as any;
       console.error("NLP service status check failed:", nlpError);
-      throw nlpError; // Let the main try-catch handle it
+      // Don't throw, continue to backend check as fallback
+
+      // If NLP service is down with a 500 error, provide a specific message
+      if (nlpError.response && nlpError.response.status === 500) {
+        console.warn("NLP service returned 500 error, might be offline");
+      }
     }
 
     // Fallback: Check the resume status in the backend
-    const response = await api.get(`/resumes/${taskId}`);
-    console.log("Backend status check response:", response.data);
+    try {
+      console.log(`Checking resume status in backend for ID: ${taskId}`);
+      const response = await api.get(`/resumes/${taskId}`);
+      console.log("Backend status check response:", response.data);
 
-    if (
-      response.data.processedData &&
-      Object.keys(response.data.processedData).length > 0
-    ) {
-      return { status: "completed", success: true };
+      if (!response.data) {
+        return { status: "pending", success: false };
+      }
+
+      // If we have processed data, the resume is complete
+      if (
+        response.data.data?.processedData &&
+        Object.keys(response.data.data.processedData).length > 0
+      ) {
+        return { status: "completed", success: true };
+      }
+
+      // Check for processing error
+      if (response.data.data?.processingError) {
+        return {
+          status: "failed",
+          success: false,
+          error: response.data.data.processingError,
+        };
+      }
+
+      // Check if the backend indicates the resume is still processing
+      if (response.data.data?.processing === true) {
+        return { status: "pending", success: true };
+      }
+
+      // Otherwise, still pending
+      return { status: "pending", success: true };
+    } catch (backendError: any) {
+      console.error("Backend status check failed:", backendError);
+
+      // If backend returns 500, provide a specific error
+      if (backendError.response && backendError.response.status === 500) {
+        return {
+          status: "failed",
+          success: false,
+          error:
+            "The server encountered an internal error. Please check if both services are online.",
+        };
+      }
+
+      throw backendError;
     }
-
-    if (response.data.processingError) {
-      return {
-        status: "failed",
-        success: false,
-        error: response.data.processingError,
-      };
-    }
-
-    return { status: "pending", success: false };
   } catch (error: any) {
     console.error("Error checking processing status:", error);
     return {
       status: "failed",
       success: false,
       error:
-        error.response?.data?.message || "Failed to check processing status",
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to check processing status",
     };
   }
 };
@@ -454,6 +509,32 @@ export const processResumeWithNLP = async (
   }
 };
 
+/**
+ * Fix processing issues for a resume
+ */
+export const fixProcessingIssue = async (
+  resumeId: string,
+  force: boolean = false
+) => {
+  try {
+    console.log(
+      `Fixing processing issue for resume ${resumeId}, force: ${force}`
+    );
+    const response = await api.post(`/resumes/fix/${resumeId}`, { force });
+    console.log("Fix processing response:", response.data);
+    return response.data;
+  } catch (error: any) {
+    console.error(`Error fixing resume ${resumeId}:`, error);
+    return {
+      success: false,
+      message:
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to fix resume processing",
+    };
+  }
+};
+
 // Create a named API object to export
 const apiService = {
   checkBackendHealth,
@@ -472,6 +553,7 @@ const apiService = {
   processResume,
   checkProcessingStatus,
   processResumeWithNLP,
+  fixProcessingIssue,
 };
 
 export default apiService;

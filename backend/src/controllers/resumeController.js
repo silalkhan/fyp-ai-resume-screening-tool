@@ -322,7 +322,7 @@ const processResumeAsync = async (resumeId, taskId, jobCategory) => {
     logger.info(
       `Resume ${resumeId} updated successfully with match score: ${resultData.matchScore}`
     )
-    await handleProcessedResume(updatedResume)
+    await updateShortlistStatus(resumeId, updatedResume.jobDescriptionId)
   } catch (error) {
     logger.error(`Processing failed for resume ${resumeId}: ${error.message}`)
 

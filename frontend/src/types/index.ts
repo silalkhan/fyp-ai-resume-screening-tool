@@ -39,6 +39,7 @@ export interface Project {
 export interface ContactInfo {
   email: string;
   phone: string;
+  location?: string;
 }
 
 export interface ProcessedData {
@@ -59,11 +60,15 @@ export interface Resume {
   candidateName: string;
   contactInfo: ContactInfo;
   processed: boolean;
+  processing?: boolean;
+  processingError?: string | null;
   taskId?: string;
   jobDescriptionId: string;
+  jobDescription?: JobDescription;
   processedData: ProcessedData;
   matchScore: number;
   shortlisted: boolean;
+  fileName?: string;
 }
 
 export interface ResumeFormData {
@@ -81,6 +86,7 @@ export interface ApiResponse<T> {
 export interface TaskStatus {
   success: boolean;
   status: "pending" | "completed" | "failed";
+  error?: string;
   result?: {
     success: boolean;
     data: {

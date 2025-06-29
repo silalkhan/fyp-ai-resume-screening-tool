@@ -35,6 +35,7 @@ export interface Project {
   description?: string;
   technologies?: string[];
   duration?: string;
+  skills?: string[];
 }
 
 export interface ProcessedData {

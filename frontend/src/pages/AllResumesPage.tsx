@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Layout from "../components/layout/Layout";
 import { getAllResumes, deleteResume } from "../services/api";
 import { Resume } from "../types";
 import { toast } from "react-toastify";
@@ -235,124 +234,175 @@ const AllResumesPage: React.FC = () => {
   };
 
   return (
-    <Layout title="All Resumes">
+    <>
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">All Resumes</h1>
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
         </div>
       ) : error ? (
         <div
-          className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4"
+          className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded"
           role="alert"
         >
           <p className="font-bold">Error</p>
           <p>{error}</p>
           <p className="mt-2">
-            Make sure both the backend and NLP services are running.
+            Please make sure the backend service is running and try again.
           </p>
         </div>
       ) : resumes.length === 0 ? (
-        <div className="text-center py-12">
-          <h2 className="text-2xl font-semibold text-gray-600">
-            No resumes found
-          </h2>
-          <p className="mt-2 text-gray-500">
-            No resumes have been uploaded yet.
+        <div className="bg-white p-6 rounded-lg shadow-md text-center">
+          <svg
+            className="mx-auto h-12 w-12 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+            />
+          </svg>
+          <h3 className="mt-2 text-lg font-medium text-gray-900">
+            No Resumes Found
+          </h3>
+          <p className="mt-1 text-sm text-gray-500">
+            Looks like no resumes have been uploaded yet.
           </p>
-          <Link to="/" className="btn-primary inline-block mt-4">
-            Go to Job Listings
-          </Link>
+          <div className="mt-6">
+            <Link
+              to="/"
+              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+            >
+              Upload New Resume
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="space-y-6">
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Uploaded Resumes</h2>
-            <Link to="/" className="btn-primary">
+            <Link
+              to="/"
+              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+            >
               Upload New Resume
             </Link>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="py-3 px-4 text-left">Name</th>
-                  <th className="py-3 px-4 text-left">Job Position</th>
-                  <th className="py-3 px-4 text-left">Match Score</th>
-                  <th className="py-3 px-4 text-left">Status</th>
-                  <th className="py-3 px-4 text-left">Upload Date</th>
-                  <th className="py-3 px-4 text-left">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {resumes.map((resume) => (
-                  <tr key={resume._id} className="hover:bg-gray-50">
-                    <td className="py-3 px-4">
-                      {resume.candidateName || "Unknown"}
-                    </td>
-                    <td className="py-3 px-4">{resume.jobDescriptionId}</td>
-                    <td className="py-3 px-4">
-                      <span
-                        className={`px-2 py-1 rounded-full text-white text-xs ${
-                          resume.matchScore !== undefined &&
-                          resume.matchScore >= 75
-                            ? "bg-green-500"
-                            : resume.matchScore !== undefined &&
-                              resume.matchScore >= 50
-                            ? "bg-yellow-500"
-                            : "bg-red-500"
-                        }`}
-                      >
-                        {resume.matchScore !== undefined
-                          ? `${resume.matchScore}%`
-                          : "N/A"}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4">
-                      {resume.shortlisted ? (
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
-                          Shortlisted
+          <div className="bg-white shadow overflow-hidden rounded-lg">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Name
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Job Position
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Match Score
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Status
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Upload Date
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {resumes.map((resume) => (
+                    <tr key={resume._id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {resume.candidateName || "Unknown"}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {resume.jobDescriptionId}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span
+                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                            (resume.matchScore || 0) >= 70
+                              ? "bg-green-100 text-green-800"
+                              : (resume.matchScore || 0) >= 50
+                              ? "bg-yellow-100 text-yellow-800"
+                              : "bg-red-100 text-red-800"
+                          }`}
+                        >
+                          {resume.matchScore || 0}%
                         </span>
-                      ) : (
-                        <span className="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span
+                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                            resume.processed
+                              ? "bg-green-100 text-green-800"
+                              : "bg-yellow-100 text-yellow-800"
+                          }`}
+                        >
                           {resume.processed ? "Processed" : "Processing"}
                         </span>
-                      )}
-                    </td>
-                    <td className="py-3 px-4">
-                      {formatDate(resume.uploadDate)}
-                    </td>
-                    <td className="py-3 px-4">
-                      <button
-                        className="text-blue-500 hover:text-blue-700 mr-2"
-                        onClick={() => handleViewDetails(resume)}
-                      >
-                        Details
-                      </button>
-                      <button
-                        className="text-green-500 hover:text-green-700 mr-2"
-                        onClick={() => handleViewProcessing(resume._id)}
-                      >
-                        Results
-                      </button>
-                      <button
-                        className="text-red-500 hover:text-red-700"
-                        onClick={() => handleDeleteResume(resume._id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        {formatDate(resume.uploadDate)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <button
+                          onClick={() => handleViewDetails(resume)}
+                          className="text-primary-600 hover:text-primary-900 mr-2"
+                        >
+                          Details
+                        </button>
+                        <button
+                          onClick={() => handleViewProcessing(resume._id)}
+                          className="text-blue-600 hover:text-blue-900 mr-2"
+                        >
+                          Results
+                        </button>
+                        <button
+                          onClick={() => handleDeleteResume(resume._id)}
+                          className="text-red-600 hover:text-red-900"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       )}
-
-      {/* Resume Details Modal */}
       {renderModal()}
-    </Layout>
+    </>
   );
 };
 
