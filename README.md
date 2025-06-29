@@ -2,22 +2,46 @@
 
 An intelligent web application for automated resume screening against job descriptions using NLP and machine learning.
 
-## Fixed Issues
+## Academic Context
 
-The following issues have been fixed to make the application runnable:
+This project is a Final Year Project (2024-2025) for the Bachelor's degree in Computer Science at the University of Engineering & Technology Peshawar, Jalozai Campus.
 
-1. **Dependency Versions**: Updated package.json files in both frontend and backend to use compatible dependency versions.
-2. **Docker Configuration**: Created missing Dockerfile files for all three services.
-3. **Windows Compatibility**: Added Windows batch scripts for starting the services.
-4. **Python Dependencies**: Fixed the requirements_fixed.txt file with specific versions to ensure compatibility.
+**Student Information:**
 
-## System Overview
+- **Name:** Silal Khan
+- **Department:** Computer Science & IT
+- **Institution:** UET Peshawar, Jalozai Campus
+- **Project Duration:** 2024-2025 (Final Semester)
+
+## Project Overview
+
+This intelligent system automates the resume screening process by:
+
+- Analyzing resumes using Natural Language Processing (NLP)
+- Matching candidates with job descriptions using ML algorithms
+- Providing detailed scoring and ranking of candidates
+- Streamlining the recruitment process through automation
+
+## System Architecture
 
 This project consists of three main components:
 
-1. **React Frontend** - Modern UI for uploading resumes and managing job descriptions
-2. **Node.js Backend** - Express API for data persistence and business logic
-3. **Python NLP Service** - Flask microservice with ML capabilities for resume analysis
+1. **React Frontend**
+
+   - Modern UI for uploading resumes and managing job descriptions
+   - Interactive dashboard for viewing results
+   - Real-time processing status updates
+
+2. **Node.js Backend**
+
+   - Express API for data persistence and business logic
+   - MongoDB integration for data storage
+   - RESTful API endpoints for frontend communication
+
+3. **Python NLP Service**
+   - Flask microservice with ML capabilities
+   - Advanced NLP algorithms for text processing
+   - Celery task queue for asynchronous processing
 
 ## Quick Start
 
@@ -43,21 +67,9 @@ docker-compose up -d
 # NLP API: http://localhost:5002
 ```
 
-### Using Start Scripts
+### Manual Setup
 
-For a quick start without Docker:
-
-```bash
-# On Windows
-start-services.bat
-
-# On Linux/Mac
-./start-services.sh
-```
-
-## Manual Setup
-
-### Backend (Node.js/Express)
+#### Backend (Node.js/Express)
 
 ```bash
 cd backend
@@ -72,7 +84,7 @@ npm run dev
 npm start
 ```
 
-### NLP Service (Python/Flask)
+#### NLP Service (Python/Flask)
 
 ```bash
 cd nlp
@@ -98,7 +110,7 @@ celery -A celery_config worker --loglevel=info
 celery -A celery_config worker --loglevel=info --pool=solo
 ```
 
-### Frontend (React)
+#### Frontend (React)
 
 ```bash
 cd frontend
@@ -110,9 +122,45 @@ npm install
 npm start
 ```
 
-## Environment Configuration
+## Key Features
 
-### Backend (.env)
+- **Resume Processing**
+
+  - Upload and parse resumes in PDF and DOCX formats
+  - Extract key information (skills, education, experience)
+  - Generate structured data from unstructured text
+
+- **Job Description Management**
+
+  - Create and manage job descriptions by category
+  - Define required skills and qualifications
+  - Set weightage for different criteria
+
+- **Intelligent Matching**
+
+  - ML-based scoring system
+  - Skills and experience mapping
+  - Education qualification matching
+  - Overall candidate ranking
+
+- **User Interface**
+  - Modern, responsive design
+  - Interactive dashboards
+  - Real-time processing status
+  - Detailed result visualization
+
+## Technical Stack
+
+- **Frontend:** React, TypeScript, Tailwind CSS
+- **Backend:** Node.js, Express, MongoDB
+- **NLP Service:** Python, Flask, spaCy, scikit-learn
+- **Infrastructure:** Docker, Redis, Celery
+
+## Environment Setup
+
+### Required Environment Variables
+
+Backend (.env):
 
 ```
 NODE_ENV=development
@@ -121,112 +169,32 @@ MONGO_URI=mongodb://localhost:27017/resume-screening
 NLP_API_URL=http://localhost:5002/api
 ```
 
-### Frontend (.env)
+Frontend (.env):
 
 ```
 REACT_APP_API_URL=http://localhost:5000/api
 REACT_APP_NLP_API_URL=http://localhost:5002/api
 ```
 
-### NLP Service (.env)
+NLP Service (.env):
 
 ```
 CELERY_BROKER_URL=redis://localhost:6379/0
 CELERY_RESULT_BACKEND=redis://localhost:6379/0
 ```
 
-## Key Features
+## Contributing
 
-- Upload and parse resumes in PDF and DOCX formats
-- Create and manage job descriptions by category
-- Extract key information from resumes (skills, education, experience)
-- Match resumes to job descriptions with ML-based scoring
-- Visualize match results and candidate ranking
+This is an academic project developed as part of final year studies. While it's open for reference and educational purposes, please note that direct contributions might be limited during the academic evaluation period.
 
-## Troubleshooting
+## License
 
-### Connection Issues
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-If the frontend cannot connect to the backend:
+## Acknowledgments
 
-1. Check that all services are running
-2. Verify the API URLs in frontend/.env match the running services
-3. Ensure MongoDB is running and accessible
-4. Check for CORS issues in browser console
+Special thanks to:
 
-### Resume Processing Errors
-
-If resume processing fails:
-
-1. Check that the NLP service is running
-2. Ensure Redis is running for Celery task queue
-   - On Windows: `wsl redis-cli ping` to check Redis in WSL
-   - On Linux: `redis-cli ping` should return PONG
-3. Verify file format is supported (PDF or DOCX)
-4. Check NLP service logs for Python errors
-
-### Celery Worker Issues
-
-If Celery worker fails to start or process tasks:
-
-1. Ensure Redis is running and accessible
-2. On Windows, use the `--pool=solo` option: `celery -A celery_config worker --loglevel=info --pool=solo`
-3. Check that all Python dependencies are installed: `pip install -r requirements_fixed.txt`
-4. Verify that the broker URL in `.env` or environment variables is correct
-
-### Windows-Specific Issues
-
-1. Use the provided batch scripts for starting services: `start-services.bat`
-2. For Redis, consider using WSL or Docker
-3. If Python processes hang, you can force stop them with: `taskkill /IM python.exe /F`
-
-## Project Structure
-
-```
-/
-├── backend/              # Node.js/Express backend
-│   ├── src/
-│   │   ├── config/       # Configuration files
-│   │   ├── controllers/  # Request handlers
-│   │   ├── middleware/   # Custom middleware
-│   │   ├── models/       # Mongoose models
-│   │   ├── routes/       # API routes
-│   │   ├── services/     # Business logic
-│   │   ├── utils/        # Helper functions
-│   │   └── app.js        # Express app setup
-│   └── server.js         # Entry point
-│
-├── frontend/             # React frontend
-│   ├── public/           # Static files
-│   └── src/
-│       ├── components/   # React components
-│       ├── context/      # React context
-│       ├── hooks/        # Custom hooks
-│   │   ├── pages/        # Page components
-│   │   ├── services/     # API services
-│   │   └── utils/        # Helper functions
-│   │
-│   └── src/
-│       └── utils/        # Helper functions
-│
-├── nlp/                  # Python NLP service
-│   ├── utils/            # NLP utility functions
-│   ├── app.py            # Flask application
-│   └── celery_config.py  # Celery configuration
-│
-└── docker-compose.yml    # Docker Compose configuration
-```
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## Author
-
-- Silal Khan
-
-## 📧 Contact
-
-For any questions or suggestions, please contact:
-
-- silalnoor999@gmail.com
+- The faculty of CS & IT Department, UET Peshawar, Jalozai Campus
+- Project supervisor(s) for their guidance
+- Open source community for various tools and libraries used in this project
