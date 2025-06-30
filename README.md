@@ -1,6 +1,13 @@
 # AI-Driven Resume Screening Tool
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18-blue.svg)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-16+-green.svg)](https://nodejs.org/)
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+
 An intelligent web application for automated resume screening against job descriptions using NLP and machine learning.
+
+![Demo Screenshot](https://raw.githubusercontent.com/silalkhan/fyp-ai-resume-screening-tool/main/frontend/public/logo192.png)
 
 ## Academic Context
 
@@ -52,7 +59,7 @@ The easiest way to run the system is using Docker Compose:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/silalkhan/fyp-ai-resume-screening-tool.git
 cd fyp-ai-resume-screening-tool
 
 # Start all services
@@ -60,7 +67,7 @@ cd fyp-ai-resume-screening-tool
 docker-start.bat
 
 # On Linux/Mac
-docker-compose up -d
+sh start-services.sh
 
 # Access the application
 # Frontend: http://localhost:3000
@@ -68,11 +75,22 @@ docker-compose up -d
 # NLP API: http://localhost:5002
 ```
 
-### Manual Setup
-
-#### Backend (Node.js/Express)
+### One-Click Startup (All Services)
 
 ```bash
+# Navigate to project root
+cd fyp-ai-resume-screening-tool
+
+# Run the startup script
+./start-services.sh
+```
+
+### Manual Setup (Step by Step)
+
+#### 1. Backend Setup
+
+```bash
+# Navigate to backend directory
 cd backend
 
 # Install dependencies
@@ -81,39 +99,72 @@ npm install
 # Start development server
 npm run dev
 
-# Or for production
-npm start
+# To seed the database with sample job descriptions (first time setup)
+node scripts/seed-job-descriptions.js
 ```
 
-#### NLP Service (Python/Flask)
+#### 2. Redis Setup (Required for NLP Service)
 
 ```bash
+# For Linux
+sudo systemctl start redis-server
+
+# Verify Redis is running
+redis-cli ping
+# Should return "PONG"
+
+# For Windows (using WSL)
+wsl redis-cli ping
+```
+
+#### 3. NLP Service Setup
+
+**Method 1: Using Virtual Environment**
+
+```bash
+# Navigate to NLP directory
 cd nlp
 
 # Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install dependencies (use the fixed requirements file)
-pip install -r requirements_fixed.txt
-
-# Download spaCy model
-python -m spacy download en_core_web_sm
+# Install dependencies
+pip install -r requirements.txt
+pip install scikit-learn sentence-transformers spacy celery
+python -m spacy download en_core_web_lg
 
 # Start Flask app
 python app.py
-
-# In a separate terminal, start Celery worker
-# On Linux/Mac
-celery -A celery_config worker --loglevel=info
-
-# On Windows
-celery -A celery_config worker --loglevel=info --pool=solo
 ```
 
-#### Frontend (React)
+**Method 2: Using Start Script**
 
 ```bash
+# Navigate to NLP directory
+cd nlp
+
+# Run the startup script
+./start_services.sh
+```
+
+**Method 3: Manual Component Start (Windows)**
+
+```bash
+# Kill any existing Python processes if needed
+taskkill /IM python.exe /F
+
+# Start Flask app
+cd nlp && export FLASK_ENV=development && python app.py
+
+# In a separate terminal, start Celery worker
+cd nlp && celery -A celery_config worker --loglevel=DEBUG -P solo
+```
+
+#### 4. Frontend Setup
+
+```bash
+# Navigate to frontend directory
 cd frontend
 
 # Install dependencies
@@ -154,7 +205,7 @@ npm start
 
 - **Frontend:** React, TypeScript, Tailwind CSS
 - **Backend:** Node.js, Express, MongoDB
-- **NLP Service:** Python, Flask, spaCy, scikit-learn
+- **NLP Service:** Python, Flask, spaCy, scikit-learn, Sentence-Transformers
 - **Infrastructure:** Docker, Redis, Celery
 
 ## Environment Setup
@@ -184,13 +235,28 @@ CELERY_BROKER_URL=redis://localhost:6379/0
 CELERY_RESULT_BACKEND=redis://localhost:6379/0
 ```
 
+## Troubleshooting
+
+- **Backend Issues**: Ensure MongoDB is running and accessible
+- **NLP Service Issues**: Verify Redis is running with `redis-cli ping`
+- **Frontend Issues**: Check if backend and NLP services are accessible
+- **Celery Worker**: If tasks are not processing, restart the Celery worker
+
 ## Contributing
 
 This is an academic project developed as part of final year studies. While it's open for reference and educational purposes, please note that direct contributions might be limited during the academic evaluation period.
 
+If you'd like to contribute, please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 ## License
 
-This project is licensed under the MIT License - see the (LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
@@ -199,3 +265,9 @@ Special thanks to:
 - The faculty of CS & IT Department, UET Peshawar, Jalozai Campus
 - Project supervisor(s) for their guidance
 - Open source community for various tools and libraries used in this project
+
+## Contact
+
+Silal Khan - [@silalkhan](https://github.com/silalkhan) - silalnoor999@gmail.com
+
+Project Link: [https://github.com/silalkhan/fyp-ai-resume-screening-tool](https://github.com/silalkhan/fyp-ai-resume-screening-tool)

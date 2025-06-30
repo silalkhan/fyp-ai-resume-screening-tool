@@ -12469,3 +12469,51 @@ def process_resume(self, file_path, job_description, job_skills, job_category=0)
 2025-06-30 01:23:43,611 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:23:43] "GET /api/health HTTP/1.1" 200 -
 2025-06-30 01:24:13,294 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:24:13] "OPTIONS /api/health HTTP/1.1" 200 -
 2025-06-30 01:24:13,600 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:24:13] "GET /api/health HTTP/1.1" 200 -
+2025-06-30 01:51:57,033 - nlp_service - INFO - Successfully imported all required modules
+2025-06-30 01:51:57,044 - nlp_service - INFO - Starting NLP service...
+2025-06-30 01:51:57,093 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.10.14:5002
+2025-06-30 01:51:57,094 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-30 01:51:57,096 - werkzeug - INFO -  * Restarting with stat
+2025-06-30 01:52:28,719 - nlp_service - INFO - Successfully imported all required modules
+2025-06-30 01:52:28,731 - nlp_service - INFO - Starting NLP service...
+2025-06-30 01:52:28,767 - werkzeug - WARNING -  * Debugger is active!
+2025-06-30 01:52:28,788 - werkzeug - INFO -  * Debugger PIN: 785-376-797
+2025-06-30 01:52:31,285 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:52:31] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-06-30 01:52:31,291 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:52:31] "GET /api/health HTTP/1.1" 200 -
+2025-06-30 01:52:37,357 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:52:37] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-06-30 01:52:37,615 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:52:37] "GET /api/health HTTP/1.1" 200 -
+2025-06-30 01:53:07,056 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:07] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-06-30 01:53:07,376 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:07] "GET /api/health HTTP/1.1" 200 -
+2025-06-30 01:53:37,057 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:37] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-06-30 01:53:37,368 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:37] "GET /api/health HTTP/1.1" 200 -
+2025-06-30 01:53:39,993 - nlp_service - INFO - Resume processing request received
+2025-06-30 01:53:39,996 - nlp_service - INFO - Processing file: resume-1751230419917-248779331.docx (.docx)
+2025-06-30 01:53:39,997 - nlp_service - INFO - Received job category: Software Engineer
+2025-06-30 01:53:39,998 - nlp_service - INFO - Normalized to internal category: software_engineer
+2025-06-30 01:53:39,999 - nlp_service - INFO - Required skills: ['OOP', 'Data Structures', 'Algorithms', 'Git', 'Testing']
+2025-06-30 01:53:40,000 - nlp_service - INFO - Saved resume: temp_uploads\resume-1751230419917-248779331.docx
+2025-06-30 01:53:40,001 - utils.extract_text - INFO - Extracting text from temp_uploads\resume-1751230419917-248779331.docx with extension .docx
+2025-06-30 01:53:40,001 - utils.extract_text - INFO - Extracting text from DOCX using python-docx: temp_uploads\resume-1751230419917-248779331.docx
+2025-06-30 01:53:40,272 - utils.extract_text - INFO - Successfully extracted 3509 characters from DOCX using python-docx
+2025-06-30 01:53:40,275 - nlp_service - INFO - Text extraction successful. Preview: John Smith Software Developer New York, NY 10001 john.smith@email.com (555) 123-4567 https://github....
+2025-06-30 01:53:40,301 - celery.utils.functional - DEBUG - 
+def process_resume(self, file_path, job_description, job_skills, job_category=0):
+    return 1
+
+2025-06-30 01:53:40,460 - nlp_service - INFO - Resume processing queued: resume-1751230419917-248779331.docx, Task ID: 4d82a7ff-c9d4-49b8-a838-587c83c9e2da, Category: Software Engineer
+2025-06-30 01:53:40,462 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:40] "[35m[1mPOST /api/process HTTP/1.1[0m" 202 -
+2025-06-30 01:53:40,570 - nlp_service - INFO - Checking status for task 4d82a7ff-c9d4-49b8-a838-587c83c9e2da: STARTED
+2025-06-30 01:53:40,574 - nlp_service - INFO - Returning response for task 4d82a7ff-c9d4-49b8-a838-587c83c9e2da: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2025-06-30 01:53:40,576 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:40] "GET /api/task/4d82a7ff-c9d4-49b8-a838-587c83c9e2da HTTP/1.1" 200 -
+2025-06-30 01:53:41,666 - nlp_service - INFO - Checking status for task 4d82a7ff-c9d4-49b8-a838-587c83c9e2da: STARTED
+2025-06-30 01:53:41,670 - nlp_service - INFO - Returning response for task 4d82a7ff-c9d4-49b8-a838-587c83c9e2da: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2025-06-30 01:53:41,672 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:41] "GET /api/task/4d82a7ff-c9d4-49b8-a838-587c83c9e2da HTTP/1.1" 200 -
+2025-06-30 01:53:43,764 - nlp_service - INFO - Checking status for task 4d82a7ff-c9d4-49b8-a838-587c83c9e2da: SUCCESS
+2025-06-30 01:53:43,766 - nlp_service - INFO - Task 4d82a7ff-c9d4-49b8-a838-587c83c9e2da result: {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'John Smith', 'contactInfo': {'email': 'john.smith@email.com', 'phone': '(555) 123-4567', 'address': 'New York, NY, React, Node.js, Express.js, Flask, Redux, Jest, NumPy, PostgreSQL, New York, NY, React, Node.js, Boston, MA, PostgreSQL Implemented, San Francisco, Stanford, Cambridge, Flask, React, Node.js'}, 'skills': ['machine learning', 'artificial intelligence', 'authentication', 'React', 'ml', 'Typescript', 'pandas', 'devops', 'tensorflow', 'aws', 'testing', 'pytorch', 'flask', 'numpy', 'mysql', 'docker', 'github', 'ci/cd', 'express', 'jira', 'node.js', 'postgresql', 'azure', 'kubernetes', 'django', 'git', 'ai', 'nlp', 'java', 'Python', 'mongodb', 'agile', 'Javascript', 'sql'], 'education': [{'institution': 'john.smith@email.com', 'degree': '', 'field': '', 'year': ''}, {'institution': 'JavaScript', 'degree': '', 'field': 'Python', 'year': ''}, {'institution': 'AI/ML', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Software', 'degree': 'Master', 'field': 'conversion r', 'year': '2020'}, {'institution': 'CI', 'degree': '', 'field': '', 'year': '2023'}, {'institution': 'TensorFlow', 'degree': 'Associate', 'field': '', 'year': '2022'}], 'experience': [], 'projects': [], 'matchScore': 39.3, 'jobCategory': 'Software Engineer', 'isShortlisted': False}}
+2025-06-30 01:53:43,768 - nlp_service - INFO - Returning response for task 4d82a7ff-c9d4-49b8-a838-587c83c9e2da: {'success': True, 'status': 'completed', 'result': {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'John Smith', 'contactInfo': {'email': 'john.smith@email.com', 'phone': '(555) 123-4567', 'address': 'New York, NY, React, Node.js, Express.js, Flask, Redux, Jest, NumPy, PostgreSQL, New York, NY, React, Node.js, Boston, MA, PostgreSQL Implemented, San Francisco, Stanford, Cambridge, Flask, React, Node.js'}, 'skills': ['machine learning', 'artificial intelligence', 'authentication', 'React', 'ml', 'Typescript', 'pandas', 'devops', 'tensorflow', 'aws', 'testing', 'pytorch', 'flask', 'numpy', 'mysql', 'docker', 'github', 'ci/cd', 'express', 'jira', 'node.js', 'postgresql', 'azure', 'kubernetes', 'django', 'git', 'ai', 'nlp', 'java', 'Python', 'mongodb', 'agile', 'Javascript', 'sql'], 'education': [{'institution': 'john.smith@email.com', 'degree': '', 'field': '', 'year': ''}, {'institution': 'JavaScript', 'degree': '', 'field': 'Python', 'year': ''}, {'institution': 'AI/ML', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Software', 'degree': 'Master', 'field': 'conversion r', 'year': '2020'}, {'institution': 'CI', 'degree': '', 'field': '', 'year': '2023'}, {'institution': 'TensorFlow', 'degree': 'Associate', 'field': '', 'year': '2022'}], 'experience': [], 'projects': [], 'matchScore': 39.3, 'jobCategory': 'Software Engineer', 'isShortlisted': False}}}
+2025-06-30 01:53:43,771 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:53:43] "GET /api/task/4d82a7ff-c9d4-49b8-a838-587c83c9e2da HTTP/1.1" 200 -
+2025-06-30 01:54:07,068 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:54:07] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-06-30 01:54:07,382 - werkzeug - INFO - 127.0.0.1 - - [30/Jun/2025 01:54:07] "GET /api/health HTTP/1.1" 200 -
