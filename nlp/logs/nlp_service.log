@@ -15025,3 +15025,131 @@ werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on 
 2025-07-03 19:55:21,085 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 19:55:21] "GET /api/health HTTP/1.1" 200 -
 2025-07-03 19:55:50,763 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 19:55:50] "OPTIONS /api/health HTTP/1.1" 200 -
 2025-07-03 19:55:51,084 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 19:55:51] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:32:45,564 - nlp_service - INFO - Successfully imported all required modules
+2025-07-03 22:32:45,573 - nlp_service - INFO - Starting NLP service...
+2025-07-03 22:32:45,696 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.10.12:5002
+2025-07-03 22:32:45,697 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-07-03 22:32:45,702 - werkzeug - INFO -  * Restarting with stat
+2025-07-03 22:33:15,097 - nlp_service - INFO - Successfully imported all required modules
+2025-07-03 22:33:15,103 - nlp_service - INFO - Starting NLP service...
+2025-07-03 22:33:15,124 - werkzeug - WARNING -  * Debugger is active!
+2025-07-03 22:33:15,139 - werkzeug - INFO -  * Debugger PIN: 132-331-273
+2025-07-03 22:33:17,879 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:33:17] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:33:17,885 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:33:17] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:33:36,635 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:33:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:33:36,892 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:33:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:34:06,340 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:34:06] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:34:06,657 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:34:06] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:34:36,329 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:34:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:34:36,643 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:34:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:35:06,329 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:35:06] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:35:06,638 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:35:06] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:35:36,343 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:35:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:35:36,655 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:35:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:36:06,330 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:36:06] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:36:06,643 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:36:06] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:36:36,330 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:36:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:36:36,635 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:36:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:37:24,026 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:37:24] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:37:24,334 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:37:24] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:37:36,334 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:37:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:37:36,648 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:37:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:02,725 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:02] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:03,026 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:03] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:03,030 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:03] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:03,345 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:03] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:32,720 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:32] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:33,039 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:33] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:35,867 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:35] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:38:36,181 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:38:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:39:01,660 - nlp_service - INFO - Resume processing request received
+2025-07-03 22:39:01,666 - nlp_service - INFO - Processing file: resume-1751564341570-293602657.docx (.docx)
+2025-07-03 22:39:01,668 - nlp_service - INFO - Received job category: Web Developer
+2025-07-03 22:39:01,669 - nlp_service - INFO - Normalized to internal category: web_developer
+2025-07-03 22:39:01,670 - nlp_service - INFO - Required skills: ['JavaScript', 'React.js', 'Node.js', 'HTML', 'CSS', 'MongoDB']
+2025-07-03 22:39:01,673 - nlp_service - INFO - Saved resume: temp_uploads\resume-1751564341570-293602657.docx
+2025-07-03 22:39:01,674 - utils.extract_text - INFO - Extracting text from temp_uploads\resume-1751564341570-293602657.docx with extension .docx
+2025-07-03 22:39:01,701 - utils.extract_text - INFO - First bytes of file: 504b030414000000
+2025-07-03 22:39:01,702 - utils.extract_text - INFO - Extracting text from DOCX using python-docx: temp_uploads\resume-1751564341570-293602657.docx
+2025-07-03 22:39:01,990 - utils.extract_text - INFO - DOCX file size: 37002 bytes
+2025-07-03 22:39:02,008 - utils.extract_text - INFO - DOCX opened successfully. Paragraphs: 2, Tables: 0
+2025-07-03 22:39:02,009 - utils.extract_text - INFO - Paragraph 0: Full Stack Web Developer...
+2025-07-03 22:39:02,010 - utils.extract_text - INFO - Paragraph 1: Name: Sara Khan
+Email: sarak.dev@email.com
+Phone: ...
+2025-07-03 22:39:02,011 - utils.extract_text - INFO - Extracted 2 non-empty paragraphs from DOCX
+2025-07-03 22:39:02,012 - utils.extract_text - INFO - Extracted 0 table rows from DOCX
+2025-07-03 22:39:02,012 - utils.extract_text - INFO - Successfully extracted 602 characters from DOCX using python-docx
+2025-07-03 22:39:02,013 - nlp_service - INFO - Text extraction successful. Preview: Full Stack Web Developer Name: Sara Khan Email: sarak.dev@email.com Phone: +92 301 9876543 Location:...
+2025-07-03 22:39:02,030 - celery.utils.functional - DEBUG - 
+def process_resume(self, file_path, job_description, job_skills, job_category=0):
+    return 1
+
+2025-07-03 22:39:02,171 - nlp_service - INFO - Resume processing queued: resume-1751564341570-293602657.docx, Task ID: f518e21e-b391-4702-a40d-c74e93199c0f, Category: Web Developer
+2025-07-03 22:39:02,174 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:02] "[35m[1mPOST /api/process HTTP/1.1[0m" 202 -
+2025-07-03 22:39:02,253 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-07-03 22:39:02,267 - nlp_service - ERROR - Traceback (most recent call last):
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2025-07-03 22:39:02,271 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:02] "[35m[1mOPTIONS /api/api/task/f518e21e-b391-4702-a40d-c74e93199c0f HTTP/1.1[0m" 500 -
+2025-07-03 22:39:02,271 - nlp_service - INFO - Checking status for task f518e21e-b391-4702-a40d-c74e93199c0f: STARTED
+2025-07-03 22:39:02,280 - nlp_service - INFO - Returning response for task f518e21e-b391-4702-a40d-c74e93199c0f: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2025-07-03 22:39:02,282 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:02] "GET /api/task/f518e21e-b391-4702-a40d-c74e93199c0f HTTP/1.1" 200 -
+2025-07-03 22:39:02,586 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-07-03 22:39:02,590 - nlp_service - ERROR - Traceback (most recent call last):
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Users\Silal Khan\AppData\Roaming\Python\Python313\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2025-07-03 22:39:02,593 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:02] "[35m[1mOPTIONS /api/api/task/f518e21e-b391-4702-a40d-c74e93199c0f HTTP/1.1[0m" 500 -
+2025-07-03 22:39:03,390 - nlp_service - INFO - Checking status for task f518e21e-b391-4702-a40d-c74e93199c0f: SUCCESS
+2025-07-03 22:39:03,391 - nlp_service - INFO - Task f518e21e-b391-4702-a40d-c74e93199c0f result: {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Sara Khan', 'contactInfo': {'email': 'sarak.dev@email.com', 'phone': '+92 301 9876543', 'address': 'React, Node.js, React, COMSATS Lahore'}, 'skills': ['full stack', 'html', 'React', 'node.js', 'css', 'Javascript', 'aws', 'graphql', 'react.js', 'mongodb', 'Typescript', 'docker'], 'education': [{'institution': 'BS Software Engineering', 'degree': 'Bs', 'field': '', 'year': '2020'}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 89.4, 'jobCategory': 'Web Developer', 'isShortlisted': True}}
+2025-07-03 22:39:03,392 - nlp_service - INFO - Returning response for task f518e21e-b391-4702-a40d-c74e93199c0f: {'success': True, 'status': 'completed', 'result': {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Sara Khan', 'contactInfo': {'email': 'sarak.dev@email.com', 'phone': '+92 301 9876543', 'address': 'React, Node.js, React, COMSATS Lahore'}, 'skills': ['full stack', 'html', 'React', 'node.js', 'css', 'Javascript', 'aws', 'graphql', 'react.js', 'mongodb', 'Typescript', 'docker'], 'education': [{'institution': 'BS Software Engineering', 'degree': 'Bs', 'field': '', 'year': '2020'}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 89.4, 'jobCategory': 'Web Developer', 'isShortlisted': True}}}
+2025-07-03 22:39:03,395 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:03] "GET /api/task/f518e21e-b391-4702-a40d-c74e93199c0f HTTP/1.1" 200 -
+2025-07-03 22:39:05,867 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:05] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:39:06,182 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:06] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:39:36,329 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:39:36,642 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:39:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:40:06,349 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:40:06] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:40:06,661 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:40:06] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:40:36,340 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:40:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:40:36,660 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:40:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:41:06,326 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:41:06] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:41:06,636 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:41:06] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:41:36,340 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:41:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:41:36,651 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:41:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:42:06,329 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:42:06] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:42:06,639 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:42:06] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:42:36,342 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:42:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:42:36,669 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:42:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:43:36,323 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:43:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:43:36,642 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:43:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:44:36,330 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:44:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:44:36,642 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:44:36] "GET /api/health HTTP/1.1" 200 -
+2025-07-03 22:45:06,324 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:45:06] "OPTIONS /api/health HTTP/1.1" 200 -
+2025-07-03 22:45:06,639 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:45:06] "GET /api/health HTTP/1.1" 200 -

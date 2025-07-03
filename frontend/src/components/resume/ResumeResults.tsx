@@ -36,7 +36,7 @@ const ResumeResults: React.FC<ResumeResultsProps> = ({ resume }) => {
     totalExperience === 1 ? "1 year" : `${totalExperience} years`;
 
   return (
-    <div className="space-y-10 bg-gray-50 dark:bg-gray-900 p-6 rounded-lg">
+    <div className="space-y-10 bg-white dark:bg-gray-900 p-6 rounded-lg">
       {/* Welcome Banner */}
       <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-primary-500 p-4 rounded-md shadow-sm">
         <div className="flex">
