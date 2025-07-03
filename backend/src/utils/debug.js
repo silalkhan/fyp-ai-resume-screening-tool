@@ -3,6 +3,7 @@ const path = require('path')
 const axios = require('axios')
 const Resume = require('../models/Resume')
 const FormData = require('form-data')
+const mongoose = require('mongoose')
 
 /**
  * Debug utility module for resume processing
@@ -25,19 +26,42 @@ const debugUtil = {
     }
 
     try {
-      // Check MongoDB
-      const resume = await Resume.findById(resumeId)
+      // Check MongoDB - handle different ID formats
+      let resume = null
+
+      // Try direct MongoDB ObjectId lookup if resumeId looks like one
+      if (mongoose.Types.ObjectId.isValid(resumeId)) {
+        resume = await Resume.findById(resumeId)
+      }
+
+      // If not found and taskId is provided, try finding by taskId
+      if (!resume && taskId) {
+        resume = await Resume.findOne({ taskId })
+      }
+
+      // Last resort, try finding by taskId = resumeId (when resumeId might be a UUID)
+      if (!resume) {
+        resume = await Resume.findOne({ taskId: resumeId })
+      }
+
       result.resumeFound = !!resume
 
       if (resume) {
-        const { processed, processing, processingError, matchScore, filePath, taskId } = resume
+        const {
+          processed,
+          processing,
+          processingError,
+          matchScore,
+          filePath,
+          taskId: resumeTaskId,
+        } = resume
         result.resumeData = {
           processed,
           processing,
           processingError,
           matchScore,
           fileExists: !!filePath,
-          hasTaskId: !!taskId,
+          hasTaskId: !!resumeTaskId,
         }
 
         // Check physical file
@@ -90,8 +114,19 @@ const debugUtil = {
    */
   async fixStalledResume(resumeId) {
     try {
-      // Find resume
-      const resume = await Resume.findById(resumeId)
+      // Find resume - handle different ID formats
+      let resume = null
+
+      // Try direct MongoDB ObjectId lookup if resumeId looks like one
+      if (mongoose.Types.ObjectId.isValid(resumeId)) {
+        resume = await Resume.findById(resumeId)
+      }
+
+      // If not found, try finding by taskId = resumeId (when resumeId might be a UUID)
+      if (!resume) {
+        resume = await Resume.findOne({ taskId: resumeId })
+      }
+
       if (!resume) {
         return { success: false, message: 'Resume not found' }
       }
@@ -120,7 +155,7 @@ const debugUtil = {
       }
 
       // Reset processing status
-      await Resume.findByIdAndUpdate(resumeId, {
+      await Resume.findByIdAndUpdate(resume._id, {
         processing: false,
         processed: false,
         processingError: null,
@@ -129,7 +164,7 @@ const debugUtil = {
       return {
         success: true,
         message: 'Resume reset for reprocessing',
-        resume: await Resume.findById(resumeId),
+        resume: await Resume.findById(resume._id),
       }
     } catch (error) {
       return {
@@ -146,8 +181,19 @@ const debugUtil = {
    */
   async forceReprocessResume(resumeId) {
     try {
-      // Find resume
-      const resume = await Resume.findById(resumeId)
+      // Find resume - handle different ID formats
+      let resume = null
+
+      // Try direct MongoDB ObjectId lookup if resumeId looks like one
+      if (mongoose.Types.ObjectId.isValid(resumeId)) {
+        resume = await Resume.findById(resumeId)
+      }
+
+      // If not found, try finding by taskId = resumeId (when resumeId might be a UUID)
+      if (!resume) {
+        resume = await Resume.findOne({ taskId: resumeId })
+      }
+
       if (!resume) {
         return { success: false, message: 'Resume not found' }
       }
@@ -191,7 +237,7 @@ const debugUtil = {
 
       // Update resume with new task ID
       if (response.data && response.data.taskId) {
-        await Resume.findByIdAndUpdate(resumeId, {
+        await Resume.findByIdAndUpdate(resume._id, {
           taskId: response.data.taskId,
           processing: true,
           processed: false,
@@ -203,7 +249,7 @@ const debugUtil = {
         success: true,
         message: 'Resume reprocessing started',
         nlpResponse: response.data,
-        resume: await Resume.findById(resumeId),
+        resume: await Resume.findById(resume._id),
       }
     } catch (error) {
       return {

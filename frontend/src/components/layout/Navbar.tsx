@@ -105,7 +105,7 @@ const Navbar: React.FC<NavbarProps> = ({ servicesStatus }) => {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex items-center rounded-full bg-white dark:bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
-                      <span className="mr-2 text-gray-700 dark:text-gray-300">
+                      <span className="mr-2 pl-3 text-gray-700 dark:text-gray-300">
                         Admin
                       </span>
                       <UserCircleIcon

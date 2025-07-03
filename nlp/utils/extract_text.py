@@ -43,12 +43,43 @@ def extract_text(file_path):
         file_extension = os.path.splitext(file_path)[1].lower()
         logger.info(f"Extracting text from {file_path} with extension {file_extension}")
         
+        # Basic file validation
+        file_size = os.path.getsize(file_path)
+        if file_size == 0:
+            logger.error(f"Empty file: {file_path}")
+            return None
+        elif file_size > 10 * 1024 * 1024:  # 10MB
+            logger.warning(f"Very large file ({file_size} bytes): {file_path}")
+        
+        # Check if file is readable
+        try:
+            with open(file_path, 'rb') as f:
+                first_bytes = f.read(8)
+                logger.info(f"First bytes of file: {first_bytes.hex()}")
+        except Exception as read_error:
+            logger.error(f"Could not read file: {str(read_error)}")
+            return None
+            
         # PDF extraction
         if file_extension == '.pdf':
             return extract_text_from_pdf(file_path)
         # DOCX extraction
         elif file_extension == '.docx':
-            return extract_text_from_docx(file_path)
+            # Try multiple methods to extract text from DOCX
+            result = extract_text_from_docx(file_path)
+            
+            # If the result is empty or very short, try a secondary method
+            if not result or len(result.strip()) < 100:
+                logger.warning(f"Primary DOCX extraction yielded limited text ({len(result) if result else 0} chars), trying alternative methods")
+                try:
+                    alt_result = extract_text_from_docx_alternative(file_path)
+                    if alt_result and len(alt_result) > len(result or ""):
+                        logger.info(f"Alternative DOCX extraction succeeded with {len(alt_result)} chars")
+                        return alt_result
+                except Exception as alt_error:
+                    logger.error(f"Alternative DOCX extraction failed: {str(alt_error)}")
+            
+            return result
         else:
             logger.error(f"Unsupported file format: {file_extension}")
             return None
@@ -125,19 +156,47 @@ def extract_text_from_docx(file_path):
         docx = _load_docx_module()
         if not docx:
             raise ImportError("python-docx not available")
+        
+        # Log file details before opening
+        file_size = os.path.getsize(file_path)
+        logger.info(f"DOCX file size: {file_size} bytes")
+        
+        # Try opening document with detailed error reporting
+        try:
+            doc = docx.Document(file_path)
+            logger.info(f"DOCX opened successfully. Paragraphs: {len(doc.paragraphs)}, Tables: {len(doc.tables)}")
+        except Exception as doc_error:
+            logger.error(f"Error opening DOCX with python-docx: {str(doc_error)}")
+            import traceback
+            logger.error(traceback.format_exc())
+            raise
             
-        doc = docx.Document(file_path)
+        # Extract paragraphs with error tracking
+        paragraphs = []
+        for i, para in enumerate(doc.paragraphs):
+            try:
+                text = para.text.strip()
+                if text:
+                    paragraphs.append(text)
+                    if i < 5:  # Log first few paragraphs for debugging
+                        logger.info(f"Paragraph {i}: {text[:50]}...")
+            except Exception as para_error:
+                logger.error(f"Error extracting paragraph {i}: {str(para_error)}")
         
-        # Extract paragraphs
-        paragraphs = [para.text for para in doc.paragraphs if para.text.strip()]
+        logger.info(f"Extracted {len(paragraphs)} non-empty paragraphs from DOCX")
         
-        # Extract tables
+        # Extract tables with error tracking
         tables_text = []
-        for table in doc.tables:
-            for row in table.rows:
-                row_text = [cell.text for cell in row.cells if cell.text.strip()]
-                if row_text:
-                    tables_text.append(' | '.join(row_text))
+        for i, table in enumerate(doc.tables):
+            try:
+                for row in table.rows:
+                    row_text = [cell.text for cell in row.cells if cell.text.strip()]
+                    if row_text:
+                        tables_text.append(' | '.join(row_text))
+            except Exception as table_error:
+                logger.error(f"Error extracting table {i}: {str(table_error)}")
+        
+        logger.info(f"Extracted {len(tables_text)} table rows from DOCX")
         
         # Combine text
         text = '\n'.join(paragraphs)
@@ -185,6 +244,68 @@ def extract_text_from_docx(file_path):
     
     logger.error(f"All DOCX extraction methods failed for: {file_path}")
     return None
+
+def extract_text_from_docx_alternative(file_path):
+    """
+    Alternative method to extract text from DOCX using direct XML parsing
+    for cases where standard libraries fail
+    """
+    try:
+        logger.info(f"Attempting alternative DOCX extraction for: {file_path}")
+        import zipfile
+        import xml.etree.ElementTree as ET
+        
+        # DOCX files are ZIP archives containing XML
+        text_content = []
+        
+        # Check if file can be opened as a ZIP
+        if not zipfile.is_zipfile(file_path):
+            logger.error(f"File is not a valid ZIP/DOCX: {file_path}")
+            return None
+            
+        # Extract document.xml which contains the main content
+        with zipfile.ZipFile(file_path) as docx_zip:
+            # List the contents for debugging
+            file_list = docx_zip.namelist()
+            logger.info(f"ZIP contents: {file_list[:10]}...")
+            
+            # Look for document.xml in standard location
+            doc_xml_path = 'word/document.xml'
+            if doc_xml_path not in file_list:
+                logger.error(f"document.xml not found in DOCX")
+                return None
+                
+            # Extract and parse XML
+            with docx_zip.open(doc_xml_path) as doc_xml:
+                tree = ET.parse(doc_xml)
+                root = tree.getroot()
+                
+                # DOCX XML namespace
+                ns = {'w': 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'}
+                
+                # Extract text from paragraphs
+                for paragraph in root.findall('.//w:p', ns):
+                    p_text = []
+                    for text_element in paragraph.findall('.//w:t', ns):
+                        if text_element.text:
+                            p_text.append(text_element.text)
+                    if p_text:
+                        text_content.append(''.join(p_text))
+        
+        # Combine all paragraphs
+        full_text = '\n'.join(text_content)
+        logger.info(f"Alternative extraction found {len(text_content)} paragraphs, {len(full_text)} chars")
+        
+        if not full_text.strip():
+            logger.warning("Alternative extraction returned empty text")
+            return None
+            
+        return clean_text(full_text)
+    except Exception as e:
+        logger.error(f"Alternative DOCX extraction failed: {str(e)}")
+        import traceback
+        logger.error(traceback.format_exc())
+        return None
 
 def clean_text(text):
     """Clean and normalize extracted text"""

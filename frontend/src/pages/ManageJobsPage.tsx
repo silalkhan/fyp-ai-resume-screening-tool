@@ -176,14 +176,14 @@ const ManageJobsPage: React.FC = () => {
 
     return (
       <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center">
-        <div className="relative mx-auto p-6 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center mb-5 pb-3 border-b border-gray-200">
-            <h3 className="text-2xl font-semibold text-gray-900">
+        <div className="relative mx-auto p-6 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white dark:bg-gray-800 dark:border-gray-700 max-h-[90vh] overflow-y-auto transition-colors duration-300">
+          <div className="flex justify-between items-center mb-5 pb-3 border-b border-gray-200 dark:border-gray-700">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
               {editingJob ? "Edit Job Description" : "Add New Job Description"}
             </h3>
             <button
               onClick={() => setShowModal(false)}
-              className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
+              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors duration-200"
               aria-label="Close"
             >
               <svg
@@ -207,7 +207,7 @@ const ManageJobsPage: React.FC = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="title"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                 >
                   Job Title
                 </label>
@@ -215,7 +215,7 @@ const ManageJobsPage: React.FC = () => {
                   id="title"
                   name="title"
                   type="text"
-                  className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="block w-full px-4 py-2 text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
                   value={formData.title}
                   onChange={handleInputChange}
                   required
@@ -226,14 +226,14 @@ const ManageJobsPage: React.FC = () => {
               <div className="space-y-2">
                 <label
                   htmlFor="category"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                 >
                   Category
                 </label>
                 <select
                   id="category"
                   name="category"
-                  className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  className="block w-full px-4 py-2 text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
                   value={formData.category}
                   onChange={handleInputChange}
                   required
@@ -251,7 +251,7 @@ const ManageJobsPage: React.FC = () => {
             <div className="space-y-2">
               <label
                 htmlFor="description"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Job Description
               </label>
@@ -259,60 +259,62 @@ const ManageJobsPage: React.FC = () => {
                 id="description"
                 name="description"
                 rows={5}
-                className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="block w-full px-4 py-2 text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
                 value={formData.description}
                 onChange={handleInputChange}
                 required
-                placeholder="Describe the job role, responsibilities and requirements..."
+                placeholder="Describe the job responsibilities and requirements..."
               ></textarea>
             </div>
 
-            <div className="space-y-2">
-              <label
-                htmlFor="requiredSkills"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Required Skills (comma separated)
-              </label>
-              <input
-                id="requiredSkills"
-                name="requiredSkills"
-                type="text"
-                className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                value={formData.requiredSkills}
-                onChange={handleInputChange}
-                placeholder="e.g. JavaScript, React.js, Node.js, HTML, CSS, MongoDB"
-              />
-              <p className="text-sm text-gray-500">
-                Enter skills separated by commas
-              </p>
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label
+                  htmlFor="requiredSkills"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Required Skills
+                </label>
+                <input
+                  id="requiredSkills"
+                  name="requiredSkills"
+                  type="text"
+                  className="block w-full px-4 py-2 text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
+                  value={formData.requiredSkills}
+                  onChange={handleInputChange}
+                  placeholder="e.g. JavaScript, React, Node.js"
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Separate skills with commas
+                </p>
+              </div>
 
-            <div className="space-y-2">
-              <label
-                htmlFor="preferredSkills"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Preferred Skills (comma separated)
-              </label>
-              <input
-                id="preferredSkills"
-                name="preferredSkills"
-                type="text"
-                className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                value={formData.preferredSkills}
-                onChange={handleInputChange}
-                placeholder="e.g. TypeScript, AWS, Docker, Redis, GraphQL"
-              />
-              <p className="text-sm text-gray-500">
-                Enter additional preferred skills separated by commas
-              </p>
+              <div className="space-y-2">
+                <label
+                  htmlFor="preferredSkills"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Preferred Skills
+                </label>
+                <input
+                  id="preferredSkills"
+                  name="preferredSkills"
+                  type="text"
+                  className="block w-full px-4 py-2 text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
+                  value={formData.preferredSkills}
+                  onChange={handleInputChange}
+                  placeholder="e.g. TypeScript, AWS, Docker"
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Separate skills with commas
+                </p>
+              </div>
             </div>
 
             <div className="space-y-2">
               <label
                 htmlFor="requiredExperience"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Required Experience (years)
               </label>
@@ -321,25 +323,25 @@ const ManageJobsPage: React.FC = () => {
                 name="requiredExperience"
                 type="number"
                 min="0"
-                className="block w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="block w-full px-4 py-2 text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 focus:border-transparent"
                 value={formData.requiredExperience}
                 onChange={handleInputChange}
               />
             </div>
 
-            <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+            <div className="flex justify-end space-x-3">
               <button
                 type="button"
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-primary-400"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-white bg-primary-600 border border-transparent rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 dark:hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-primary-400"
               >
-                {editingJob ? "Update Job" : "Add Job"}
+                {editingJob ? "Update Job" : "Create Job"}
               </button>
             </div>
           </form>
@@ -350,119 +352,137 @@ const ManageJobsPage: React.FC = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Manage Jobs</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+          Manage Jobs
+        </h1>
+        <button
+          onClick={handleAddJob}
+          className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 dark:hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+        >
+          Add New Job
+        </button>
+      </div>
 
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
         </div>
       ) : error ? (
-        <div
-          className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded"
-          role="alert"
-        >
+        <div className="bg-red-100 dark:bg-red-900/30 border-l-4 border-red-500 text-red-700 dark:text-red-400 p-4 rounded">
           <p className="font-bold">Error</p>
           <p>{error}</p>
         </div>
-      ) : (
-        <div className="space-y-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Job Descriptions</h2>
+      ) : jobs.length === 0 ? (
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md dark:shadow-lg text-center transition-colors duration-300">
+          <svg
+            className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+            />
+          </svg>
+          <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-gray-100">
+            No Jobs Found
+          </h3>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Get started by creating a new job description.
+          </p>
+          <div className="mt-6">
             <button
-              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
               onClick={handleAddJob}
+              className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 dark:hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-primary-400"
             >
               Add New Job
             </button>
           </div>
-
-          {jobs.length === 0 ? (
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <svg
-                className="mx-auto h-12 w-12 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
-                />
-              </svg>
-              <h3 className="mt-2 text-lg font-medium text-gray-900">
-                No job descriptions found
-              </h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Create your first job description by clicking the "Add New Job"
-                button.
-              </p>
-            </div>
-          ) : (
-            <div className="bg-white shadow overflow-hidden rounded-lg">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Title
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Category
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Required Experience
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Created At
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {jobs.map((job) => (
-                      <tr key={job._id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {job.title}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {job.category}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {job.requiredExperience > 0
-                            ? `${job.requiredExperience} year(s)`
-                            : "None"}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {new Date(job.createdAt).toLocaleDateString()}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <button
-                            className="text-blue-600 hover:text-blue-900 mr-3"
-                            onClick={() => handleEditJob(job)}
+        </div>
+      ) : (
+        <div className="bg-white dark:bg-gray-800 shadow dark:shadow-lg overflow-hidden rounded-lg transition-colors duration-300">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Title
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Category
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Required Experience
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Required Skills
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                {jobs.map((job) => (
+                  <tr
+                    key={job._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
+                      {job.title}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
+                      {job.category}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
+                      {job.requiredExperience > 0
+                        ? `${job.requiredExperience} year(s)`
+                        : "None"}
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex flex-wrap gap-1">
+                        {job.requiredSkills.slice(0, 3).map((skill, index) => (
+                          <span
+                            key={index}
+                            className="px-2 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs rounded-full"
                           >
-                            Edit
-                          </button>
-                          <button
-                            className="text-red-600 hover:text-red-900"
-                            onClick={() => handleDeleteJob(job._id)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
+                            {skill}
+                          </span>
+                        ))}
+                        {job.requiredSkills.length > 3 && (
+                          <span className="px-2 py-1 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs rounded-full">
+                            +{job.requiredSkills.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <button
+                        onClick={() => handleEditJob(job)}
+                        className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-3"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDeleteJob(job._id)}
+                        className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
+
       {renderJobForm()}
     </>
   );

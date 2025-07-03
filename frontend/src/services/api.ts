@@ -213,14 +213,27 @@ export const uploadResume = async (
       };
     }
 
+    // Improve logging and data validation
+    console.log("Resume upload response structure:", {
+      hasData: !!response.data.data,
+      dataType: response.data.data ? typeof response.data.data : "undefined",
+      id: response.data.data?._id || response.data.data?.id || "Not found",
+      hasTaskId: !!response.data.data?.taskId,
+    });
+
+    // Create a safe response with validated fields
+    const safeData = response.data.data || {};
+
     return {
       success: true,
       message: "Resume uploaded successfully",
       data: {
-        ...response.data,
+        ...safeData,
+        _id: safeData._id || safeData.id, // Ensure _id exists
+        id: safeData.id || safeData._id, // Ensure id exists
         processing: true,
         processed: false,
-        taskId: response.data.taskId || response.data._id, // Fallback to _id if no taskId
+        taskId: safeData.taskId || safeData._id, // Fallback to _id if no taskId
         processingError: null,
       },
     };
@@ -383,102 +396,60 @@ export const processResume = async (
  */
 export const checkProcessingStatus = async (taskId: string) => {
   try {
-    // First try to get the status from the NLP service
-    try {
-      console.log(`Checking NLP service status for task ${taskId}...`);
-      const nlpResponse = await nlpApi.get(`/tasks/${taskId}`);
-      console.log("NLP status check response:", nlpResponse.data);
+    console.log(`Checking task status: ${taskId}`);
 
-      if (nlpResponse.data) {
-        const status = nlpResponse.data.status?.toLowerCase();
-        // If we have results, consider it completed regardless of status
-        if (
-          nlpResponse.data.results ||
-          status === "completed" ||
-          status === "success"
-        ) {
-          return { status: "completed", success: true };
-        }
-        if (status === "failed" || status === "error") {
-          console.warn(
-            "NLP processing reported failure:",
-            nlpResponse.data.error
-          );
-          // Don't throw, continue to backend check as fallback
-        } else {
-          // If state is not failed and we don't have results yet, it's still pending
-          return { status: "pending", success: true };
+    // First try the direct NLP API
+    try {
+      console.log(`Trying direct NLP API first for task ${taskId}`);
+      const directResponse = await fetch(`${NLP_API_URL}/api/task/${taskId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (directResponse.ok) {
+        const data = await directResponse.json();
+        console.log("Direct NLP API response:", data);
+
+        if (data && (data.status === "completed" || data.status === "failed")) {
+          return data;
         }
       }
-    } catch (error) {
-      const nlpError = error as any;
-      console.error("NLP service status check failed:", nlpError);
-      // Don't throw, continue to backend check as fallback
-
-      // If NLP service is down with a 500 error, provide a specific message
-      if (nlpError.response && nlpError.response.status === 500) {
-        console.warn("NLP service returned 500 error, might be offline");
-      }
+    } catch (directErr) {
+      console.log(
+        "Direct NLP API not available, falling back to backend proxy"
+      );
     }
 
-    // Fallback: Check the resume status in the backend
-    try {
-      console.log(`Checking resume status in backend for ID: ${taskId}`);
-      const response = await api.get(`/resumes/${taskId}`);
-      console.log("Backend status check response:", response.data);
+    // If direct NLP API doesn't work, use the backend proxy
+    // Encode the taskId to handle special characters
+    const encodedTaskId = encodeURIComponent(taskId);
+    const response = await api.get(`/resumes/task/${encodedTaskId}/status`);
+    console.log("Task status response via backend:", response.data);
 
-      if (!response.data) {
-        return { status: "pending", success: false };
-      }
-
-      // If we have processed data, the resume is complete
-      if (
-        response.data.data?.processedData &&
-        Object.keys(response.data.data.processedData).length > 0
-      ) {
-        return { status: "completed", success: true };
-      }
-
-      // Check for processing error
-      if (response.data.data?.processingError) {
-        return {
-          status: "failed",
-          success: false,
-          error: response.data.data.processingError,
-        };
-      }
-
-      // Check if the backend indicates the resume is still processing
-      if (response.data.data?.processing === true) {
-        return { status: "pending", success: true };
-      }
-
-      // Otherwise, still pending
-      return { status: "pending", success: true };
-    } catch (backendError: any) {
-      console.error("Backend status check failed:", backendError);
-
-      // If backend returns 500, provide a specific error
-      if (backendError.response && backendError.response.status === 500) {
-        return {
-          status: "failed",
-          success: false,
-          error:
-            "The server encountered an internal error. Please check if both services are online.",
-        };
-      }
-
-      throw backendError;
+    // Enhanced error checking
+    if (!response.data) {
+      return {
+        status: "failed",
+        success: false,
+        error: "Empty response from task status check",
+      };
     }
+
+    // Return result
+    return response.data;
   } catch (error: any) {
-    console.error("Error checking processing status:", error);
+    console.error(`Error checking task status for task ${taskId}:`, error);
+
+    // Return a structured error response
     return {
       status: "failed",
       success: false,
       error:
         error.response?.data?.message ||
         error.message ||
-        "Failed to check processing status",
+        "Unknown error checking task status",
     };
   }
 };

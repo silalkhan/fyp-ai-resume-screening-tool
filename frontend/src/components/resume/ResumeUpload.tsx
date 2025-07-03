@@ -98,14 +98,30 @@ const ResumeUpload: React.FC<ResumeUploadProps> = ({ jobDescription }) => {
           response.message ||
             "Resume uploaded successfully! Processing started..."
         );
-        navigate(`/resumes/${response.data._id}/processing`);
+
+        // Ensure we have a valid ID before navigating
+        if (response.data._id) {
+          console.log(
+            "Navigating to processing page with resume ID:",
+            response.data._id
+          );
+          navigate(`/resumes/${response.data._id}/processing`);
+        } else if (response.data.id) {
+          console.log(
+            "Navigating to processing page with resume ID from .id:",
+            response.data.id
+          );
+          navigate(`/resumes/${response.data.id}/processing`);
+        } else {
+          console.error("No valid resume ID found in response", response.data);
+          toast.error("Error accessing resume. Please try from the dashboard.");
+        }
       } else {
         toast.error(response.message || "Error uploading resume");
       }
     } catch (error: any) {
       console.error("Error uploading resume:", error);
       toast.error(error.message || "Failed to upload resume");
-      toast.error("Failed to upload resume. Please try again.");
     } finally {
       setLoading(false);
     }

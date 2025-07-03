@@ -98,7 +98,7 @@ const updateShortlistStatus = async (resumeId, jobDescriptionId) => {
   }
 }
 
-const checkTaskStatus = async (taskId, maxAttempts = MAX_CHECK_ATTEMPTS) => {
+const checkNlpStatus = async (taskId, maxAttempts = MAX_CHECK_ATTEMPTS) => {
   try {
     logger.info(`Checking task status for task ${taskId}, attempts left: ${maxAttempts}`)
 
@@ -178,7 +178,7 @@ const checkTaskStatus = async (taskId, maxAttempts = MAX_CHECK_ATTEMPTS) => {
 
         // Wait with exponential backoff before trying again
         await new Promise((resolve) => setTimeout(resolve, backoffDelay))
-        return checkTaskStatus(taskId, maxAttempts - 1)
+        return checkNlpStatus(taskId, maxAttempts - 1)
       }
     } catch (apiError) {
       logger.error(`API error while checking task status: ${apiError.message}`)
@@ -215,7 +215,7 @@ const checkTaskStatus = async (taskId, maxAttempts = MAX_CHECK_ATTEMPTS) => {
       await new Promise((resolve) => setTimeout(resolve, retryDelay))
 
       // For transient errors, retry
-      return checkTaskStatus(taskId, maxAttempts - 1)
+      return checkNlpStatus(taskId, maxAttempts - 1)
     }
   } catch (error) {
     logger.error(`Task status check failed for task ${taskId}:`, {
@@ -250,7 +250,7 @@ const processResumeAsync = async (resumeId, taskId, jobCategory) => {
 
     while (maxAttempts > 0) {
       try {
-        const processResponse = await checkTaskStatus(taskId)
+        const processResponse = await checkNlpStatus(taskId)
         logger.info(`Task ${taskId} check response:`, processResponse)
 
         if (processResponse.success && processResponse.data) {
@@ -483,15 +483,55 @@ exports.getAllResumes = async (req, res) => {
 
 exports.getResumeById = async (req, res) => {
   try {
-    const resume = await Resume.findById(req.params.id)
+    const { id } = req.params
+    logger.info(`Fetching resume with ID: ${id}`)
+
+    // Find resume by ID
+    const resume = await Resume.findById(id).populate('jobDescriptionId')
+
     if (!resume) {
-      logger.warn(`Resume not found: ${req.params.id}`)
-      return res.status(404).json({ success: false, message: 'Resume not found' })
+      logger.warn(`Resume not found with ID: ${id}`)
+      return res.status(404).json({
+        success: false,
+        message: 'Resume not found',
+      })
     }
-    res.status(200).json({ success: true, data: resume })
-  } catch (err) {
-    logger.error(`Get resume error: ${err.message}`)
-    res.status(500).json({ success: false, message: 'Server error' })
+
+    // Ensure processedData exists even if incomplete/failed
+    if (!resume.processedData) {
+      resume.processedData = {
+        skills: [],
+        experience: [],
+        education: [],
+        projects: [],
+      }
+    }
+
+    // Make sure candidate name is never null/undefined
+    if (!resume.candidateName) {
+      resume.candidateName = resume.originalFilename.split('.')[0] || 'Candidate'
+    }
+
+    // Handle case where matchScore exists but processed is false
+    if (resume.matchScore !== undefined && resume.matchScore !== null && !resume.processed) {
+      resume.processed = true
+      resume.processing = false
+      await resume.save()
+    }
+
+    logger.info(`Resume fetched successfully: ${id}`)
+    res.json({
+      success: true,
+      message: 'Resume fetched successfully',
+      data: resume,
+    })
+  } catch (error) {
+    logger.error(`Error fetching resume by ID: ${error.message}`)
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching resume',
+      error: process.env.NODE_ENV === 'development' ? error.message : {},
+    })
   }
 }
 
@@ -572,7 +612,7 @@ exports.processResumeWithAI = async (req, res) => {
     // Process asynchronously
     const processAsync = async () => {
       try {
-        const processResponse = await checkTaskStatus(response.data.taskId)
+        const processResponse = await checkNlpStatus(response.data.taskId)
         if (!processResponse.success) {
           await Resume.findByIdAndUpdate(resume._id, {
             processing: false,
@@ -817,5 +857,141 @@ exports.getJobApplicationStats = async (req, res) => {
   } catch (err) {
     logger.error(`Get job application stats error: ${err.message}`)
     res.status(500).json({ success: false, message: 'Server error' })
+  }
+}
+
+exports.checkTaskStatus = async (req, res) => {
+  try {
+    const { taskId } = req.params
+    const validationErrors = validationResult(req)
+
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation error',
+        errors: validationErrors.array(),
+      })
+    }
+
+    if (!taskId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Task ID is required',
+      })
+    }
+
+    logger.info(`Checking task status for task ${taskId}`)
+
+    // First check if this taskId corresponds to a resume in our system
+    // Modify the query to handle non-ObjectId taskIds
+    let resume = null
+    try {
+      // Only try to find by _id if it looks like a valid ObjectId
+      if (/^[0-9a-fA-F]{24}$/.test(taskId)) {
+        resume = await Resume.findById(taskId)
+      }
+
+      // If not found by _id, try by taskId string
+      if (!resume) {
+        resume = await Resume.findOne({ taskId: taskId })
+      }
+    } catch (mongoError) {
+      logger.error(`MongoDB error when finding resume by ID/taskId: ${mongoError.message}`)
+      // Continue without throwing - we'll check with NLP service directly
+    }
+
+    if (resume) {
+      logger.info(`Found resume with ID ${resume._id} for task ${taskId}`)
+
+      // If the resume is already processed, return completed status
+      if (resume.processed && resume.processedData) {
+        logger.info(`Resume ${resume._id} is already processed, returning completed status`)
+        return res.json({
+          status: 'completed',
+          success: true,
+          result: {
+            success: true,
+            data: {
+              candidateName: resume.candidateName,
+              contactInfo: resume.contactInfo,
+              skills: resume.processedData.skills || [],
+              education: resume.processedData.education || [],
+              experience: resume.processedData.experience || [],
+              projects: resume.processedData.projects || [],
+              matchScore: resume.matchScore || 0,
+            },
+          },
+        })
+      }
+
+      // If the resume is being processed or has a processing error, return appropriate status
+      if (resume.processing) {
+        logger.info(`Resume ${resume._id} is still processing`)
+        return res.json({
+          status: 'pending',
+          success: true,
+        })
+      }
+
+      if (resume.processingError) {
+        logger.info(`Resume ${resume._id} has processing error: ${resume.processingError}`)
+        return res.json({
+          status: 'failed',
+          success: false,
+          error: resume.processingError,
+        })
+      }
+    }
+
+    // If we couldn't determine the status from the resume record,
+    // check the task status directly from NLP service
+    logger.info(`Checking task status directly from NLP service for task ${taskId}`)
+
+    try {
+      // Use the existing checkTaskStatus function but renamed to avoid confusion with this controller method
+      const taskStatus = await checkNlpStatus(taskId)
+
+      logger.info(`Task ${taskId} status from NLP service:`, {
+        success: taskStatus.success,
+        status: taskStatus.status || taskStatus.data?.status,
+      })
+
+      return res.json(taskStatus)
+    } catch (nlpError) {
+      logger.error(`Error checking NLP status for task ${taskId}: ${nlpError.message}`)
+      return res.status(500).json({
+        success: false,
+        status: 'failed',
+        message: `Error checking NLP task status: ${nlpError.message}`,
+      })
+    }
+  } catch (error) {
+    // Handle specific ObjectId casting error
+    if (error.name === 'CastError' && error.kind === 'ObjectId') {
+      logger.error(`Invalid ObjectId format for taskId ${req.params.taskId}`)
+
+      // Try to check with NLP service directly as a fallback
+      try {
+        const taskStatus = await checkNlpStatus(req.params.taskId)
+        return res.json(taskStatus)
+      } catch (nlpError) {
+        return res.status(400).json({
+          success: false,
+          status: 'failed',
+          message: `Invalid task ID format and NLP service check failed: ${nlpError.message}`,
+        })
+      }
+    }
+
+    logger.error(`Error checking task status for task ${req.params.taskId}:`, {
+      error: error.message,
+      stack: error.stack,
+    })
+
+    return res.status(500).json({
+      success: false,
+      status: 'failed',
+      message: `Error checking task status: ${error.message}`,
+    })
   }
 }

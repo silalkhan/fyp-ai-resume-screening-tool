@@ -22,7 +22,7 @@ export const Input: React.FC<InputProps> = ({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200"
         >
           {label}
         </label>
@@ -32,15 +32,18 @@ export const Input: React.FC<InputProps> = ({
         className={clsx(
           "block w-full rounded-md shadow-sm sm:text-sm",
           "border-gray-300 focus:border-primary-500 focus:ring-primary-500",
-          error && "border-red-300 focus:border-red-500 focus:ring-red-500",
+          "dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+          "dark:focus:border-primary-400 dark:focus:ring-primary-400 dark:placeholder-gray-400",
+          error &&
+            "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:border-red-400 dark:focus:ring-red-400",
           className
         )}
         {...props}
       />
       {error ? (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
       ) : helpText ? (
-        <p className="text-sm text-gray-500">{helpText}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">{helpText}</p>
       ) : null}
     </div>
   );
@@ -68,7 +71,7 @@ export const TextArea: React.FC<TextAreaProps> = ({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200"
         >
           {label}
         </label>
@@ -78,15 +81,18 @@ export const TextArea: React.FC<TextAreaProps> = ({
         className={clsx(
           "block w-full rounded-md shadow-sm sm:text-sm",
           "border-gray-300 focus:border-primary-500 focus:ring-primary-500",
-          error && "border-red-300 focus:border-red-500 focus:ring-red-500",
+          "dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+          "dark:focus:border-primary-400 dark:focus:ring-primary-400 dark:placeholder-gray-400",
+          error &&
+            "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:border-red-400 dark:focus:ring-red-400",
           className
         )}
         {...props}
       />
       {error ? (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
       ) : helpText ? (
-        <p className="text-sm text-gray-500">{helpText}</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">{helpText}</p>
       ) : null}
     </div>
   );

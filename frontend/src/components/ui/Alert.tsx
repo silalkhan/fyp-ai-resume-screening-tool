@@ -19,28 +19,32 @@ const Alert: React.FC<AlertProps> = ({
 }) => {
   const variantStyles = {
     success: {
-      container: "bg-green-50 border-green-400",
-      icon: "text-green-400",
-      title: "text-green-800",
-      message: "text-green-700",
+      container:
+        "bg-green-50 dark:bg-green-900/30 border-green-400 dark:border-green-500",
+      icon: "text-green-400 dark:text-green-400",
+      title: "text-green-800 dark:text-green-200",
+      message: "text-green-700 dark:text-green-300",
     },
     info: {
-      container: "bg-blue-50 border-blue-400",
-      icon: "text-blue-400",
-      title: "text-blue-800",
-      message: "text-blue-700",
+      container:
+        "bg-blue-50 dark:bg-blue-900/30 border-blue-400 dark:border-blue-500",
+      icon: "text-blue-400 dark:text-blue-400",
+      title: "text-blue-800 dark:text-blue-200",
+      message: "text-blue-700 dark:text-blue-300",
     },
     warning: {
-      container: "bg-yellow-50 border-yellow-400",
-      icon: "text-yellow-400",
-      title: "text-yellow-800",
-      message: "text-yellow-700",
+      container:
+        "bg-yellow-50 dark:bg-yellow-900/30 border-yellow-400 dark:border-yellow-500",
+      icon: "text-yellow-400 dark:text-yellow-400",
+      title: "text-yellow-800 dark:text-yellow-200",
+      message: "text-yellow-700 dark:text-yellow-300",
     },
     error: {
-      container: "bg-red-50 border-red-400",
-      icon: "text-red-400",
-      title: "text-red-800",
-      message: "text-red-700",
+      container:
+        "bg-red-50 dark:bg-red-900/30 border-red-400 dark:border-red-500",
+      icon: "text-red-400 dark:text-red-400",
+      title: "text-red-800 dark:text-red-200",
+      message: "text-red-700 dark:text-red-300",
     },
   };
 

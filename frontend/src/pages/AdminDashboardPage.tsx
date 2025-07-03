@@ -114,13 +114,15 @@ const AdminDashboardPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <div className="flex flex-col items-center p-6">
-            <h2 className="text-4xl font-bold text-primary-600">
+            <h2 className="text-4xl font-bold text-primary-600 dark:text-primary-400">
               {resumesCount}
             </h2>
-            <p className="text-lg text-gray-600 mt-2">Total Resumes</p>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">
+              Total Resumes
+            </p>
             <button
               onClick={() => setActiveTab("resumes")}
-              className="mt-4 text-sm text-primary-600 hover:text-primary-800"
+              className="mt-4 text-sm text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
             >
               View All Resumes
             </button>
@@ -129,11 +131,13 @@ const AdminDashboardPage: React.FC = () => {
 
         <Card>
           <div className="flex flex-col items-center p-6">
-            <h2 className="text-4xl font-bold text-green-600">
+            <h2 className="text-4xl font-bold text-green-600 dark:text-green-400">
               {shortlistedCount}
             </h2>
-            <p className="text-lg text-gray-600 mt-2">Shortlisted</p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">
+              Shortlisted
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               {resumesCount > 0
                 ? `${Math.round(
                     (shortlistedCount / resumesCount) * 100
@@ -145,11 +149,15 @@ const AdminDashboardPage: React.FC = () => {
 
         <Card>
           <div className="flex flex-col items-center p-6">
-            <h2 className="text-4xl font-bold text-blue-600">{jobsCount}</h2>
-            <p className="text-lg text-gray-600 mt-2">Job Positions</p>
+            <h2 className="text-4xl font-bold text-blue-600 dark:text-blue-400">
+              {jobsCount}
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">
+              Job Positions
+            </p>
             <button
               onClick={() => setActiveTab("jobs")}
-              className="mt-4 text-sm text-primary-600 hover:text-primary-800"
+              className="mt-4 text-sm text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-300"
             >
               Manage Jobs
             </button>
@@ -158,12 +166,14 @@ const AdminDashboardPage: React.FC = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
+      <div className="bg-white dark:bg-gray-800 shadow dark:shadow-lg rounded-lg p-6 transition-colors duration-300">
+        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          Quick Actions
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Link
             to="/"
-            className="inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+            className="inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600"
           >
             Upload New Resume
           </Link>
@@ -173,14 +183,14 @@ const AdminDashboardPage: React.FC = () => {
               setActiveTab("jobs");
               navigate("/jobs/manage");
             }}
-            className="inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+            className="inline-flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
           >
             Add New Job
           </button>
 
           <button
             onClick={() => setActiveTab("resumes")}
-            className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+            className="inline-flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
             Review Resumes
           </button>
@@ -188,17 +198,19 @@ const AdminDashboardPage: React.FC = () => {
       </div>
 
       {/* System Status */}
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">System Information</h2>
+      <div className="bg-white dark:bg-gray-800 shadow dark:shadow-lg rounded-lg p-6 transition-colors duration-300">
+        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          System Information
+        </h2>
         <div className="space-y-2">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             <span className="font-medium">Version:</span> 1.0.0
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             <span className="font-medium">Last Updated:</span>{" "}
             {new Date().toLocaleDateString()}
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             <span className="font-medium">Environment:</span> Development
           </p>
         </div>
@@ -209,17 +221,19 @@ const AdminDashboardPage: React.FC = () => {
   const renderResumes = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold">Resume Management</h2>
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+          Resume Management
+        </h2>
         <div className="flex space-x-2">
           <button
             onClick={() => setActiveTab("dashboard")}
-            className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+            className="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
             Back to Dashboard
           </button>
           <Link
             to="/"
-            className="inline-flex items-center px-3 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+            className="inline-flex items-center px-3 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600"
           >
             Upload New Resume
           </Link>
@@ -227,9 +241,9 @@ const AdminDashboardPage: React.FC = () => {
       </div>
 
       {resumes.length === 0 ? (
-        <div className="bg-white p-6 rounded-lg shadow-md text-center">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md dark:shadow-lg text-center transition-colors duration-300">
           <svg
-            className="mx-auto h-12 w-12 text-gray-400"
+            className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -242,56 +256,59 @@ const AdminDashboardPage: React.FC = () => {
               d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
             />
           </svg>
-          <h3 className="mt-2 text-lg font-medium text-gray-900">
+          <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-gray-100">
             No Resumes Found
           </h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
             Looks like no resumes have been uploaded yet.
           </p>
         </div>
       ) : (
-        <div className="bg-white shadow overflow-hidden rounded-lg">
+        <div className="bg-white dark:bg-gray-800 shadow dark:shadow-lg overflow-hidden rounded-lg transition-colors duration-300">
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Job Position
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Match Score
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Upload Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                 {resumes.map((resume) => (
-                  <tr key={resume._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">
+                  <tr
+                    key={resume._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
                       {resume.candidateName || "Unknown"}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
                       {resume.jobDescriptionId}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           (resume.matchScore || 0) >= 70
-                            ? "bg-green-100 text-green-800"
+                            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
                             : (resume.matchScore || 0) >= 50
-                            ? "bg-yellow-100 text-yellow-800"
-                            : "bg-red-100 text-red-800"
+                            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+                            : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
                         }`}
                       >
                         {resume.matchScore || 0}%
@@ -301,14 +318,14 @@ const AdminDashboardPage: React.FC = () => {
                       <span
                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           resume.processed
-                            ? "bg-green-100 text-green-800"
-                            : "bg-yellow-100 text-yellow-800"
+                            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
+                            : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
                         }`}
                       >
                         {resume.processed ? "Processed" : "Processing"}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
                       {formatDate(resume.uploadDate)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -316,13 +333,13 @@ const AdminDashboardPage: React.FC = () => {
                         onClick={() =>
                           navigate(`/resumes/${resume._id}/processing`)
                         }
-                        className="text-primary-600 hover:text-primary-900 mr-2"
+                        className="text-primary-600 hover:text-primary-900 dark:text-primary-400 dark:hover:text-primary-300 mr-2"
                       >
                         View
                       </button>
                       <button
                         onClick={() => handleDeleteResume(resume._id)}
-                        className="text-red-600 hover:text-red-900"
+                        className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
                       >
                         Delete
                       </button>
@@ -340,17 +357,19 @@ const AdminDashboardPage: React.FC = () => {
   const renderJobs = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold">Job Management</h2>
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+          Job Management
+        </h2>
         <div className="flex space-x-2">
           <button
             onClick={() => setActiveTab("dashboard")}
-            className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+            className="inline-flex items-center px-3 py-1.5 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           >
             Back to Dashboard
           </button>
           <Link
             to="/jobs/manage"
-            className="inline-flex items-center px-3 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700"
+            className="inline-flex items-center px-3 py-1.5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 dark:bg-primary-700 dark:hover:bg-primary-600"
           >
             Add New Job
           </Link>
@@ -358,9 +377,9 @@ const AdminDashboardPage: React.FC = () => {
       </div>
 
       {jobs.length === 0 ? (
-        <div className="bg-white p-6 rounded-lg shadow-md text-center">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md dark:shadow-lg text-center transition-colors duration-300">
           <svg
-            className="mx-auto h-12 w-12 text-gray-400"
+            className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -373,47 +392,52 @@ const AdminDashboardPage: React.FC = () => {
               d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
             />
           </svg>
-          <h3 className="mt-2 text-lg font-medium text-gray-900">
+          <h3 className="mt-2 text-lg font-medium text-gray-900 dark:text-gray-100">
             No Jobs Found
           </h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
             No job descriptions have been created yet.
           </p>
         </div>
       ) : (
-        <div className="bg-white shadow overflow-hidden rounded-lg">
+        <div className="bg-white dark:bg-gray-800 shadow dark:shadow-lg overflow-hidden rounded-lg transition-colors duration-300">
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Title
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Category
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Required Experience
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Required Skills
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Created At
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                 {jobs.map((job) => (
-                  <tr key={job._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap">{job.title}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                  <tr
+                    key={job._id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
+                      {job.title}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
                       {job.category}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
                       {job.requiredExperience > 0
                         ? `${job.requiredExperience} year(s)`
                         : "None"}
@@ -423,31 +447,31 @@ const AdminDashboardPage: React.FC = () => {
                         {job.requiredSkills.slice(0, 3).map((skill, index) => (
                           <span
                             key={index}
-                            className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                            className="px-2 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs rounded-full"
                           >
                             {skill}
                           </span>
                         ))}
                         {job.requiredSkills.length > 3 && (
-                          <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 text-xs rounded-full">
                             +{job.requiredSkills.length - 3} more
                           </span>
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-800 dark:text-gray-200">
                       {formatDate(job.createdAt)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <Link
                         to={`/jobs/manage?edit=${job._id}`}
-                        className="text-blue-600 hover:text-blue-900 mr-3"
+                        className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-3"
                       >
                         Edit
                       </Link>
                       <button
                         onClick={() => handleDeleteJob(job._id)}
-                        className="text-red-600 hover:text-red-900"
+                        className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
                       >
                         Delete
                       </button>
@@ -476,14 +500,16 @@ const AdminDashboardPage: React.FC = () => {
   return (
     <>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+          Admin Dashboard
+        </h1>
         <div className="flex space-x-2">
           <button
             onClick={() => setActiveTab("dashboard")}
             className={`px-4 py-2 text-sm font-medium rounded-md ${
               activeTab === "dashboard"
-                ? "bg-primary-600 text-white"
-                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+                ? "bg-primary-600 text-white dark:bg-primary-700"
+                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600"
             }`}
           >
             Dashboard
@@ -492,8 +518,8 @@ const AdminDashboardPage: React.FC = () => {
             onClick={() => setActiveTab("resumes")}
             className={`px-4 py-2 text-sm font-medium rounded-md ${
               activeTab === "resumes"
-                ? "bg-primary-600 text-white"
-                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+                ? "bg-primary-600 text-white dark:bg-primary-700"
+                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600"
             }`}
           >
             Resumes
@@ -502,8 +528,8 @@ const AdminDashboardPage: React.FC = () => {
             onClick={() => setActiveTab("jobs")}
             className={`px-4 py-2 text-sm font-medium rounded-md ${
               activeTab === "jobs"
-                ? "bg-primary-600 text-white"
-                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
+                ? "bg-primary-600 text-white dark:bg-primary-700"
+                : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600 dark:hover:bg-gray-600"
             }`}
           >
             Jobs
@@ -516,10 +542,7 @@ const AdminDashboardPage: React.FC = () => {
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
         </div>
       ) : error ? (
-        <div
-          className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded"
-          role="alert"
-        >
+        <div className="bg-red-100 dark:bg-red-900/30 border-l-4 border-red-500 text-red-700 dark:text-red-400 p-4 rounded">
           <p className="font-bold">Error</p>
           <p>{error}</p>
         </div>

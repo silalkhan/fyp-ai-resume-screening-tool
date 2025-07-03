@@ -38,13 +38,7 @@ const ResumeProcessingPage: React.FC = () => {
     async (taskId: string) => {
       try {
         if (!taskId) {
-          throw new Error("Task ID is required for checking processing status");
-        }
-
-        if (pollCount >= MAX_POLL_ATTEMPTS) {
-          throw new Error(
-            "Resume processing is taking longer than expected. Please try again later."
-          );
+          throw new Error("No task ID provided for polling");
         }
 
         console.log(
@@ -57,6 +51,8 @@ const ResumeProcessingPage: React.FC = () => {
         console.log("Processing status response:", response);
 
         if (!response || typeof response.status !== "string") {
+          console.error("Invalid response format:", response);
+          setDebugInfo(JSON.stringify(response, null, 2));
           throw new Error("Invalid response from processing status check");
         }
 
@@ -72,6 +68,42 @@ const ResumeProcessingPage: React.FC = () => {
             console.log("Updated resume response:", updatedResumeResponse);
 
             if (!updatedResumeResponse.success || !updatedResumeResponse.data) {
+              // If we can't get the updated resume data, try to use the result from the task status
+              if (response.result?.data) {
+                console.log("Using data from task status response instead");
+
+                // Create a minimal resume object with the task result data
+                const minimalResume: Resume = {
+                  _id: resumeId,
+                  taskId: taskId,
+                  processed: true,
+                  processing: false,
+                  processingError: null,
+                  matchScore: response.result.data.matchScore ?? 0,
+                  processedData: {
+                    skills: response.result.data.skills || [],
+                    education: response.result.data.education || [],
+                    experience: response.result.data.experience || [],
+                    projects: response.result.data.projects || [],
+                  },
+                  // Add required Resume properties
+                  fileName: "resume.pdf",
+                  filePath: "",
+                  uploadDate: new Date().toISOString(),
+                  candidateName:
+                    response.result.data.candidateName || "Candidate",
+                  contactInfo: response.result.data.contactInfo || "",
+                  jobDescriptionId: "",
+                  shortlisted: false,
+                };
+
+                const processedResume = processResumeData(minimalResume);
+                setResume(processedResume);
+                setProcessingStatus("completed");
+                setLoading(false);
+                return;
+              }
+
               throw new Error(
                 updatedResumeResponse.message ||
                   "Failed to retrieve processed resume data. Please try again."
@@ -94,11 +126,39 @@ const ResumeProcessingPage: React.FC = () => {
               }
             }
 
-            if (!resumeData.processedData) {
-              setDebugInfo(JSON.stringify(resumeData, null, 2));
-              throw new Error(
-                "Resume processing completed but results were not found. Please try uploading again."
+            // Check if we really have processed data from NLP
+            const hasRealData =
+              resumeData.processedData &&
+              ((resumeData.processedData.skills &&
+                resumeData.processedData.skills.length > 0) ||
+                (resumeData.processedData.education &&
+                  resumeData.processedData.education.length > 0) ||
+                (resumeData.processedData.experience &&
+                  resumeData.processedData.experience.length > 0) ||
+                (resumeData.processedData.projects &&
+                  resumeData.processedData.projects.length > 0));
+
+            if (!hasRealData) {
+              console.warn(
+                "Resume has no real processed data, checking task result"
               );
+
+              // Try to use the result from the task status if available
+              if (response.result?.data) {
+                console.log("Using data from task status response");
+                resumeData.processedData = {
+                  skills: response.result.data.skills || [],
+                  education: response.result.data.education || [],
+                  experience: response.result.data.experience || [],
+                  projects: response.result.data.projects || [],
+                };
+                resumeData.matchScore = response.result.data.matchScore ?? 0;
+              } else {
+                setDebugInfo(JSON.stringify(resumeData, null, 2));
+                throw new Error(
+                  "Resume processing completed but no extraction results were found. The NLP service may have failed to extract data from your resume."
+                );
+              }
             }
 
             // Ensure all required fields are present
@@ -126,6 +186,13 @@ const ResumeProcessingPage: React.FC = () => {
 
         if (response.status === "failed") {
           throw new Error(response.error || "Processing failed");
+        }
+
+        // Check if we've reached the maximum number of polling attempts
+        if (pollCount >= MAX_POLL_ATTEMPTS - 1) {
+          throw new Error(
+            `Maximum polling attempts (${MAX_POLL_ATTEMPTS}) reached. The resume processing is taking longer than expected.`
+          );
         }
 
         // Still processing, continue polling
@@ -165,8 +232,21 @@ const ResumeProcessingPage: React.FC = () => {
     setDebugInfo(null);
 
     if (!resumeId) {
+      console.error("ResumeProcessingPage: No resume ID provided in URL");
       setError("No resume ID provided in URL. Please return and try again.");
       setLoading(false);
+
+      // Log current URL for debugging
+      console.log("Current URL:", window.location.href);
+      console.log("URL pathname:", window.location.pathname);
+
+      // If we're at /resumes/undefined/processing, redirect to home
+      if (window.location.href.includes("/resumes/undefined/processing")) {
+        console.log("Detected 'undefined' in URL, redirecting to home");
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
+      }
       return;
     }
 
@@ -185,19 +265,28 @@ const ResumeProcessingPage: React.FC = () => {
         throw new Error("No task ID found for this resume");
       }
 
+      // Check if resume has actual processed data
+      const hasRealProcessedData =
+        response.data.processedData &&
+        (response.data.processedData.skills?.length > 0 ||
+          response.data.processedData.education?.length > 0 ||
+          response.data.processedData.experience?.length > 0 ||
+          response.data.processedData.projects?.length > 0);
+
       // Create a complete resume object with required fields
       const initialResumeData = {
         ...response.data,
+        _id: response.data._id || resumeId, // Ensure _id matches the URL param
         taskId,
-        processed: !!response.data.processedData || !!response.data.matchScore,
-        processing: !response.data.processedData && !response.data.matchScore,
+        processed: hasRealProcessedData,
+        processing: !hasRealProcessedData,
         processingError: null,
       };
 
-      // If resume has a matchScore but no processedData, create minimal processedData
-      if (response.data.matchScore && !response.data.processedData) {
+      // Create minimal processedData if it's missing
+      if (!initialResumeData.processedData) {
         console.log(
-          "Resume has matchScore but no processedData, creating minimal structure"
+          "No processedData structure found, creating minimal structure"
         );
         initialResumeData.processedData = {
           skills: [],
@@ -205,20 +294,23 @@ const ResumeProcessingPage: React.FC = () => {
           experience: [],
           projects: [],
         };
-        initialResumeData.processed = true;
-        initialResumeData.processing = false;
       }
 
       const processedResume = processResumeData(initialResumeData);
       setResume(processedResume);
 
-      if (!processedResume.processed && !processedResume.processingError) {
-        setProcessingStatus("pending");
-        pollTaskStatus(taskId);
-      } else if (processedResume.processed) {
+      // If we have valid processed data, show results
+      if (hasRealProcessedData) {
         setProcessingStatus("completed");
         setLoading(false);
-      } else if (processedResume.processingError) {
+      }
+      // Otherwise poll for task status
+      else if (!processedResume.processingError) {
+        setProcessingStatus("pending");
+        pollTaskStatus(taskId);
+      }
+      // If there was an error, show it
+      else {
         throw new Error(processedResume.processingError);
       }
     } catch (err: any) {
@@ -234,24 +326,19 @@ const ResumeProcessingPage: React.FC = () => {
             "The server encountered an internal error. This may be because the NLP service is offline."
           );
           setDebugInfo(
-            `Server error (500) while fetching resume. ID: ${resumeId}`
+            `Server error (${statusCode}) during fetch: ${errorMessage}`
           );
         } else {
-          setError(`Error (${statusCode}): ${errorMessage}`);
-          setDebugInfo(
-            `Status: ${statusCode}, URL: ${
-              err.response.config?.url || "unknown"
-            }`
-          );
+          setError(`Error ${statusCode}: ${errorMessage}`);
         }
       } else {
-        setError(err.message || "Failed to load resume");
+        setError(err.message || "Failed to fetch resume");
       }
 
       setProcessingStatus("failed");
       setLoading(false);
     }
-  }, [resumeId, pollTaskStatus]);
+  }, [resumeId, navigate, pollTaskStatus]);
 
   useEffect(() => {
     fetchResume();
@@ -272,25 +359,55 @@ const ResumeProcessingPage: React.FC = () => {
   const handleForceReprocess = async () => {
     if (!resumeId) return;
 
-    setLoading(true);
-    setError("Attempting to force reprocessing...");
-
     try {
-      const response = await fixProcessingIssue(resumeId, true);
-      console.log("Force reprocess response:", response);
+      setLoading(true);
+      setError(null);
+      setDebugInfo(null);
 
-      if (response.success) {
-        setError(null);
-        setProcessingStatus("pending");
+      console.log(
+        "[ResumeProcessingPage] Force reprocessing resume:",
+        resumeId
+      );
+      const response = await fixProcessingIssue(resumeId, true);
+      console.log("[ResumeProcessingPage] Reprocess response:", response);
+
+      if (!response.success) {
+        throw new Error(response.message || "Failed to reprocess resume");
+      }
+
+      // After forcing reprocessing, wait briefly then fetch the resume again
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Create a safe default data structure if not present
+      const updatedResume = response.resume || {};
+      if (!updatedResume.processedData) {
+        updatedResume.processedData = {
+          skills: [],
+          education: [],
+          experience: [],
+          projects: [],
+        };
+      }
+
+      // If we have a taskId, start polling
+      if (updatedResume.taskId) {
+        setResume(processResumeData(updatedResume));
         setPollCount(0);
-        // Wait a moment before fetching to allow processing to start
-        setTimeout(fetchResume, 2000);
+        setProcessingStatus("pending");
+        pollTaskStatus(updatedResume.taskId);
       } else {
-        setError(`Failed to reprocess: ${response.message}`);
-        setLoading(false);
+        // If no task ID, just refresh the page after a delay
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     } catch (err: any) {
+      console.error(
+        "[ResumeProcessingPage] Error during force reprocess:",
+        err
+      );
       setError(`Error reprocessing resume: ${err.message}`);
+      setProcessingStatus("failed");
       setLoading(false);
     }
   };

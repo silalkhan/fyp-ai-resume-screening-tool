@@ -46,20 +46,18 @@ export const processResumeData = (resume: Resume): Resume => {
     processedResume.processing = false;
   }
 
-  // Ensure matchScore is preserved
+  // Ensure matchScore is preserved and valid
   if (resume.matchScore !== undefined && resume.matchScore !== null) {
     processedResume.matchScore = resume.matchScore;
-  } else if (!processedResume.matchScore) {
-    // If no match score is available, set a default
-    console.warn("No match score found in resume data, using default");
+  } else {
+    // Default to 0 if no match score is available
+    console.warn("No match score found in resume data, using 0");
     processedResume.matchScore = 0;
   }
 
-  // Create empty processedData if missing but we have a matchScore
-  if (!processedResume.processedData && processedResume.matchScore) {
-    console.log(
-      "Creating minimal processedData structure for resume with matchScore"
-    );
+  // Create empty processedData structure if missing
+  if (!processedResume.processedData) {
+    console.log("Creating minimal processedData structure for resume");
     processedResume.processedData = {
       skills: [],
       education: [],
