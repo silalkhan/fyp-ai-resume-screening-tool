@@ -1,9 +1,13 @@
+const path = require('path')
 const mongoose = require('mongoose')
-require('dotenv').config({ path: '../.env' })
+
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/resume-screening'
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI || 'mongodb://localhost:27017/resume-screening')
+  .connect(mongoURI)
   .then(() => console.log('MongoDB connected...'))
   .catch((err) => console.error('MongoDB connection error:', err))
 

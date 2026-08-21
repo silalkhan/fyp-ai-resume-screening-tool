@@ -15153,3 +15153,749 @@ werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on 
 2025-07-03 22:44:36,642 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:44:36] "GET /api/health HTTP/1.1" 200 -
 2025-07-03 22:45:06,324 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:45:06] "OPTIONS /api/health HTTP/1.1" 200 -
 2025-07-03 22:45:06,639 - werkzeug - INFO - 127.0.0.1 - - [03/Jul/2025 22:45:06] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:38:27,658 - nlp_service - INFO - Successfully imported all required modules
+2026-08-21 05:38:27,661 - nlp_service - INFO - Starting NLP service...
+2026-08-21 05:38:27,671 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://172.17.18.75:5002
+2026-08-21 05:38:27,671 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-08-21 05:38:27,672 - werkzeug - INFO -  * Restarting with stat
+2026-08-21 05:38:43,092 - nlp_service - INFO - Successfully imported all required modules
+2026-08-21 05:38:43,095 - nlp_service - INFO - Starting NLP service...
+2026-08-21 05:38:43,100 - werkzeug - WARNING -  * Debugger is active!
+2026-08-21 05:38:40,728 - werkzeug - INFO -  * Debugger PIN: 825-801-667
+2026-08-21 05:38:40,775 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:38:40,779 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask_restx/api.py", line 448, in render_root
+    self.abort(HTTPStatus.NOT_FOUND)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask_restx/namespace.py", line 153, in abort
+    abort(*args, **kwargs)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask_restx/errors.py", line 28, in abort
+    flask.abort(code)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/helpers.py", line 291, in abort
+    current_app.aborter(code, *args, **kwargs)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/exceptions.py", line 887, in __call__
+    raise self.mapping[code](*args, **kwargs)
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:38:40,780 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:38:40] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2026-08-21 05:38:40,838 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:38:40,838 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:38:40,839 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:38:40] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2026-08-21 05:41:15,412 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:41:15,414 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask_restx/api.py", line 448, in render_root
+    self.abort(HTTPStatus.NOT_FOUND)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask_restx/namespace.py", line 153, in abort
+    abort(*args, **kwargs)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask_restx/errors.py", line 28, in abort
+    flask.abort(code)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/helpers.py", line 291, in abort
+    current_app.aborter(code, *args, **kwargs)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/exceptions.py", line 887, in __call__
+    raise self.mapping[code](*args, **kwargs)
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:41:15,414 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:41:15] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2026-08-21 05:41:15,448 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:41:15,450 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:41:15,450 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:41:15] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2026-08-21 05:47:59,937 - nlp_service - INFO - Successfully imported all required modules
+2026-08-21 05:47:59,940 - nlp_service - INFO - Starting NLP service...
+2026-08-21 05:47:59,945 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://172.17.18.75:5002
+2026-08-21 05:47:59,945 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-08-21 05:47:59,946 - werkzeug - INFO -  * Restarting with stat
+2026-08-21 05:48:12,508 - nlp_service - INFO - Successfully imported all required modules
+2026-08-21 05:48:12,511 - nlp_service - INFO - Starting NLP service...
+2026-08-21 05:48:12,515 - werkzeug - WARNING -  * Debugger is active!
+2026-08-21 05:48:12,516 - werkzeug - INFO -  * Debugger PIN: 825-801-667
+2026-08-21 05:49:00,027 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:00] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:00,060 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:00] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:00,283 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:00] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:00,368 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:00] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:20,064 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:20,411 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:20,683 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:50,065 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:50,412 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:49:51,034 - nlp_service - INFO - Resume processing request received
+2026-08-21 05:49:51,036 - nlp_service - INFO - Processing file: resume-1787273390995-738205463.docx (.docx)
+2026-08-21 05:49:51,036 - nlp_service - INFO - Received job category: Web Developer
+2026-08-21 05:49:51,037 - nlp_service - INFO - Normalized to internal category: web_developer
+2026-08-21 05:49:51,037 - nlp_service - INFO - Required skills: ['JavaScript', 'React.js', 'Node.js', 'HTML', 'CSS', 'MongoDB']
+2026-08-21 05:49:51,038 - nlp_service - INFO - Saved resume: temp_uploads/resume-1787273390995-738205463.docx
+2026-08-21 05:49:51,038 - utils.extract_text - INFO - Extracting text from temp_uploads/resume-1787273390995-738205463.docx with extension .docx
+2026-08-21 05:49:51,038 - utils.extract_text - INFO - First bytes of file: 504b030414000000
+2026-08-21 05:49:51,038 - utils.extract_text - INFO - Extracting text from DOCX using python-docx: temp_uploads/resume-1787273390995-738205463.docx
+2026-08-21 05:49:51,104 - utils.extract_text - INFO - DOCX file size: 37028 bytes
+2026-08-21 05:49:51,121 - utils.extract_text - INFO - DOCX opened successfully. Paragraphs: 2, Tables: 0
+2026-08-21 05:49:51,122 - utils.extract_text - INFO - Paragraph 0: Lecturer at UET Peshawar...
+2026-08-21 05:49:51,122 - utils.extract_text - INFO - Paragraph 1: Name: Dr. Nida Yousaf
+Email: nida.yousaf@uet.edu.p...
+2026-08-21 05:49:51,123 - utils.extract_text - INFO - Extracted 2 non-empty paragraphs from DOCX
+2026-08-21 05:49:51,123 - utils.extract_text - INFO - Extracted 0 table rows from DOCX
+2026-08-21 05:49:51,123 - utils.extract_text - INFO - Successfully extracted 658 characters from DOCX using python-docx
+2026-08-21 05:49:51,124 - nlp_service - INFO - Text extraction successful. Preview: Lecturer at UET Peshawar Name: Dr. Nida Yousaf Email: nida.yousaf@uet.edu.pk Phone: +92 334 2233445 ...
+2026-08-21 05:49:51,129 - celery.utils.functional - DEBUG - 
+def process_resume(self, file_path, job_description, job_skills, job_category=0):
+    return 1
+
+2026-08-21 05:49:51,150 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:49:51,154 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:49:51,157 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:49:51,159 - nlp_service - INFO - Resume processing queued: resume-1787273390995-738205463.docx, Task ID: 64c89b94-56a2-4750-a99d-bfc52f04fd15, Category: Web Developer
+2026-08-21 05:49:51,160 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:51] "[35m[1mPOST /api/process HTTP/1.1[0m" 202 -
+2026-08-21 05:49:51,202 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:49:51,203 - nlp_service - INFO - Checking status for task 64c89b94-56a2-4750-a99d-bfc52f04fd15: STARTED
+2026-08-21 05:49:51,206 - nlp_service - INFO - Returning response for task 64c89b94-56a2-4750-a99d-bfc52f04fd15: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2026-08-21 05:49:51,207 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:51] "GET /api/task/64c89b94-56a2-4750-a99d-bfc52f04fd15 HTTP/1.1" 200 -
+2026-08-21 05:49:51,243 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:49:51,244 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:49:51,245 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:51] "[35m[1mOPTIONS /api/api/task/64c89b94-56a2-4750-a99d-bfc52f04fd15 HTTP/1.1[0m" 500 -
+2026-08-21 05:49:51,595 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:49:51,596 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:49:51,596 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:51] "[35m[1mOPTIONS /api/api/task/64c89b94-56a2-4750-a99d-bfc52f04fd15 HTTP/1.1[0m" 500 -
+2026-08-21 05:49:52,226 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:49:52,227 - nlp_service - INFO - Checking status for task 64c89b94-56a2-4750-a99d-bfc52f04fd15: SUCCESS
+2026-08-21 05:49:52,227 - nlp_service - INFO - Task 64c89b94-56a2-4750-a99d-bfc52f04fd15 result: {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Nida Yousaf', 'contactInfo': {'email': 'nida.yousaf@uet.edu.pk', 'phone': '+92 334 2233445', 'address': 'AI'}, 'skills': ['curriculum development', 'grant writing', 'research', 'teaching', 'ai', 'phd', 'ms'], 'education': [{'institution': 'Phone', 'degree': 'Phd', 'field': 'Computer Science', 'year': ''}, {'institution': 'Education', 'degree': 'Phd', 'field': '', 'year': '2019'}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 15.0, 'jobCategory': 'Web Developer', 'isShortlisted': False}}
+2026-08-21 05:49:52,228 - nlp_service - INFO - Returning response for task 64c89b94-56a2-4750-a99d-bfc52f04fd15: {'success': True, 'status': 'completed', 'result': {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Nida Yousaf', 'contactInfo': {'email': 'nida.yousaf@uet.edu.pk', 'phone': '+92 334 2233445', 'address': 'AI'}, 'skills': ['curriculum development', 'grant writing', 'research', 'teaching', 'ai', 'phd', 'ms'], 'education': [{'institution': 'Phone', 'degree': 'Phd', 'field': 'Computer Science', 'year': ''}, {'institution': 'Education', 'degree': 'Phd', 'field': '', 'year': '2019'}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 15.0, 'jobCategory': 'Web Developer', 'isShortlisted': False}}}
+2026-08-21 05:49:52,228 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:49:52] "GET /api/task/64c89b94-56a2-4750-a99d-bfc52f04fd15 HTTP/1.1" 200 -
+2026-08-21 05:50:20,073 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:50:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:50:20,410 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:50:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:50:50,425 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:50:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:50:50,715 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:50:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:51:10,882 - nlp_service - INFO - Resume processing request received
+2026-08-21 05:51:10,884 - nlp_service - INFO - Processing file: resume-1787273470868-647099586.docx (.docx)
+2026-08-21 05:51:10,884 - nlp_service - INFO - Received job category: UET Peshawar
+2026-08-21 05:51:10,884 - nlp_service - INFO - Normalized to internal category: uet_peshawar
+2026-08-21 05:51:10,885 - nlp_service - INFO - Required skills: ['Teaching', 'Research', 'MS/PhD Degree', 'Academic Publications', 'Curriculum Development']
+2026-08-21 05:51:10,885 - nlp_service - INFO - Saved resume: temp_uploads/resume-1787273470868-647099586.docx
+2026-08-21 05:51:10,885 - utils.extract_text - INFO - Extracting text from temp_uploads/resume-1787273470868-647099586.docx with extension .docx
+2026-08-21 05:51:10,885 - utils.extract_text - INFO - First bytes of file: 504b030414000000
+2026-08-21 05:51:10,886 - utils.extract_text - INFO - Extracting text from DOCX using python-docx: temp_uploads/resume-1787273470868-647099586.docx
+2026-08-21 05:51:10,886 - utils.extract_text - INFO - DOCX file size: 37028 bytes
+2026-08-21 05:51:10,896 - utils.extract_text - INFO - DOCX opened successfully. Paragraphs: 2, Tables: 0
+2026-08-21 05:51:10,896 - utils.extract_text - INFO - Paragraph 0: Lecturer at UET Peshawar...
+2026-08-21 05:51:10,897 - utils.extract_text - INFO - Paragraph 1: Name: Dr. Nida Yousaf
+Email: nida.yousaf@uet.edu.p...
+2026-08-21 05:51:10,897 - utils.extract_text - INFO - Extracted 2 non-empty paragraphs from DOCX
+2026-08-21 05:51:10,897 - utils.extract_text - INFO - Extracted 0 table rows from DOCX
+2026-08-21 05:51:10,897 - utils.extract_text - INFO - Successfully extracted 658 characters from DOCX using python-docx
+2026-08-21 05:51:10,898 - nlp_service - INFO - Text extraction successful. Preview: Lecturer at UET Peshawar Name: Dr. Nida Yousaf Email: nida.yousaf@uet.edu.pk Phone: +92 334 2233445 ...
+2026-08-21 05:51:10,908 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:51:10,909 - nlp_service - INFO - Resume processing queued: resume-1787273470868-647099586.docx, Task ID: ea192fc3-f226-47bf-af0b-df43c4ff7127, Category: UET Peshawar
+2026-08-21 05:51:10,910 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:10] "[35m[1mPOST /api/process HTTP/1.1[0m" 202 -
+2026-08-21 05:51:10,947 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:51:10,949 - nlp_service - INFO - Checking status for task ea192fc3-f226-47bf-af0b-df43c4ff7127: STARTED
+2026-08-21 05:51:10,952 - nlp_service - INFO - Returning response for task ea192fc3-f226-47bf-af0b-df43c4ff7127: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2026-08-21 05:51:10,953 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:10] "GET /api/task/ea192fc3-f226-47bf-af0b-df43c4ff7127 HTTP/1.1" 200 -
+2026-08-21 05:51:10,990 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:51:10,991 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:51:10,992 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:10] "[35m[1mOPTIONS /api/api/task/ea192fc3-f226-47bf-af0b-df43c4ff7127 HTTP/1.1[0m" 500 -
+2026-08-21 05:51:11,333 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:51:11,334 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:51:11,334 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:11] "[35m[1mOPTIONS /api/api/task/ea192fc3-f226-47bf-af0b-df43c4ff7127 HTTP/1.1[0m" 500 -
+2026-08-21 05:51:11,973 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:51:11,974 - nlp_service - INFO - Checking status for task ea192fc3-f226-47bf-af0b-df43c4ff7127: SUCCESS
+2026-08-21 05:51:11,975 - nlp_service - INFO - Task ea192fc3-f226-47bf-af0b-df43c4ff7127 result: {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Nida Yousaf', 'contactInfo': {'email': 'nida.yousaf@uet.edu.pk', 'phone': '+92 334 2233445', 'address': 'AI'}, 'skills': ['curriculum development', 'academic publications', 'ms/phd degree', 'grant writing', 'research', 'teaching', 'ai', 'phd', 'ms'], 'education': [{'institution': 'Phone', 'degree': 'Phd', 'field': 'Computer Science', 'year': ''}, {'institution': 'Education', 'degree': 'Phd', 'field': '', 'year': '2019'}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 87.6, 'jobCategory': 'UET Peshawar', 'isShortlisted': True}}
+2026-08-21 05:51:11,975 - nlp_service - INFO - Returning response for task ea192fc3-f226-47bf-af0b-df43c4ff7127: {'success': True, 'status': 'completed', 'result': {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Nida Yousaf', 'contactInfo': {'email': 'nida.yousaf@uet.edu.pk', 'phone': '+92 334 2233445', 'address': 'AI'}, 'skills': ['curriculum development', 'academic publications', 'ms/phd degree', 'grant writing', 'research', 'teaching', 'ai', 'phd', 'ms'], 'education': [{'institution': 'Phone', 'degree': 'Phd', 'field': 'Computer Science', 'year': ''}, {'institution': 'Education', 'degree': 'Phd', 'field': '', 'year': '2019'}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 87.6, 'jobCategory': 'UET Peshawar', 'isShortlisted': True}}}
+2026-08-21 05:51:11,975 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:11] "GET /api/task/ea192fc3-f226-47bf-af0b-df43c4ff7127 HTTP/1.1" 200 -
+2026-08-21 05:51:20,083 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:51:20,416 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:51:50,690 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:51:51,037 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:51:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:52:23,199 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:23] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:52:23,544 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:23] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:52:47,538 - nlp_service - INFO - Resume processing request received
+2026-08-21 05:52:47,540 - nlp_service - INFO - Processing file: resume-1787273567525-955174197.docx (.docx)
+2026-08-21 05:52:47,540 - nlp_service - INFO - Received job category: UET Peshawar
+2026-08-21 05:52:47,540 - nlp_service - INFO - Normalized to internal category: uet_peshawar
+2026-08-21 05:52:47,541 - nlp_service - INFO - Required skills: ['Teaching', 'Research', 'MS/PhD Degree', 'Academic Publications', 'Curriculum Development']
+2026-08-21 05:52:47,541 - nlp_service - INFO - Saved resume: temp_uploads/resume-1787273567525-955174197.docx
+2026-08-21 05:52:47,541 - utils.extract_text - INFO - Extracting text from temp_uploads/resume-1787273567525-955174197.docx with extension .docx
+2026-08-21 05:52:47,542 - utils.extract_text - INFO - First bytes of file: 504b030414000000
+2026-08-21 05:52:47,542 - utils.extract_text - INFO - Extracting text from DOCX using python-docx: temp_uploads/resume-1787273567525-955174197.docx
+2026-08-21 05:52:47,542 - utils.extract_text - INFO - DOCX file size: 36979 bytes
+2026-08-21 05:52:47,557 - utils.extract_text - INFO - DOCX opened successfully. Paragraphs: 2, Tables: 0
+2026-08-21 05:52:47,558 - utils.extract_text - INFO - Paragraph 0: Python Developer...
+2026-08-21 05:52:47,558 - utils.extract_text - INFO - Paragraph 1: Name: Bilal Ahmed
+Email: bilal.ahmed@gmail.com
+Pho...
+2026-08-21 05:52:47,559 - utils.extract_text - INFO - Extracted 2 non-empty paragraphs from DOCX
+2026-08-21 05:52:47,559 - utils.extract_text - INFO - Extracted 0 table rows from DOCX
+2026-08-21 05:52:47,559 - utils.extract_text - INFO - Successfully extracted 587 characters from DOCX using python-docx
+2026-08-21 05:52:47,560 - nlp_service - INFO - Text extraction successful. Preview: Python Developer Name: Bilal Ahmed Email: bilal.ahmed@gmail.com Phone: +92 300 1111122 Location: Kar...
+2026-08-21 05:52:47,571 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:52:47,572 - nlp_service - INFO - Resume processing queued: resume-1787273567525-955174197.docx, Task ID: 0aac5f15-8076-4580-8d29-e8f4a12f747a, Category: UET Peshawar
+2026-08-21 05:52:47,573 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:47] "[35m[1mPOST /api/process HTTP/1.1[0m" 202 -
+2026-08-21 05:52:47,607 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:52:47,609 - nlp_service - INFO - Checking status for task 0aac5f15-8076-4580-8d29-e8f4a12f747a: STARTED
+2026-08-21 05:52:47,611 - nlp_service - INFO - Returning response for task 0aac5f15-8076-4580-8d29-e8f4a12f747a: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2026-08-21 05:52:47,612 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:47] "GET /api/task/0aac5f15-8076-4580-8d29-e8f4a12f747a HTTP/1.1" 200 -
+2026-08-21 05:52:47,627 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:52:47,628 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:52:47,629 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:47] "[35m[1mOPTIONS /api/api/task/0aac5f15-8076-4580-8d29-e8f4a12f747a HTTP/1.1[0m" 500 -
+2026-08-21 05:52:47,972 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 05:52:47,973 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 05:52:47,974 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:47] "[35m[1mOPTIONS /api/api/task/0aac5f15-8076-4580-8d29-e8f4a12f747a HTTP/1.1[0m" 500 -
+2026-08-21 05:52:48,634 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 05:52:48,635 - nlp_service - INFO - Checking status for task 0aac5f15-8076-4580-8d29-e8f4a12f747a: SUCCESS
+2026-08-21 05:52:48,636 - nlp_service - INFO - Task 0aac5f15-8076-4580-8d29-e8f4a12f747a result: {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'IBA Karachi', 'contactInfo': {'email': 'bilal.ahmed@gmail.com', 'phone': '+92 300 1111122'}, 'skills': ['data analysis', 'machine learning', 'Python', 'aws', 'git', 'sql', 'ci/cd', 'github', 'flask', 'docker'], 'education': [{'institution': 'Flask', 'degree': '', 'field': 'experience in RESTful APIs', 'year': ''}, {'institution': 'Flask', 'degree': 'Bs', 'field': '', 'year': '2021'}], 'experience': [{'company': 'Python Developer Name: Bilal Ahmed Email: bilal.ahmed@gmail.com Phone: +92 300 1111122 Location: Karachi, Pakistan Summary: Python Developer with 3 years of experience in RESTful APIs, Flask applications, and data processing pipelines. Skills: - Python - Flask - API Development - SQL - Git - Docker - CI/CD - AWS - Data Analysis - Machine Learning Experience: Python Developer – Systems Ltd (2021–2024) - Built internal APIs using Flask - Deployed machine learning pipelines on AWS - Implemented CI/CD pipelines using GitHub Actions Education: BS Computer Science, IBA Karachi, 2020', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 15.0, 'jobCategory': 'UET Peshawar', 'isShortlisted': False}}
+2026-08-21 05:52:48,636 - nlp_service - INFO - Returning response for task 0aac5f15-8076-4580-8d29-e8f4a12f747a: {'success': True, 'status': 'completed', 'result': {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'IBA Karachi', 'contactInfo': {'email': 'bilal.ahmed@gmail.com', 'phone': '+92 300 1111122'}, 'skills': ['data analysis', 'machine learning', 'Python', 'aws', 'git', 'sql', 'ci/cd', 'github', 'flask', 'docker'], 'education': [{'institution': 'Flask', 'degree': '', 'field': 'experience in RESTful APIs', 'year': ''}, {'institution': 'Flask', 'degree': 'Bs', 'field': '', 'year': '2021'}], 'experience': [{'company': 'Python Developer Name: Bilal Ahmed Email: bilal.ahmed@gmail.com Phone: +92 300 1111122 Location: Karachi, Pakistan Summary: Python Developer with 3 years of experience in RESTful APIs, Flask applications, and data processing pipelines. Skills: - Python - Flask - API Development - SQL - Git - Docker - CI/CD - AWS - Data Analysis - Machine Learning Experience: Python Developer – Systems Ltd (2021–2024) - Built internal APIs using Flask - Deployed machine learning pipelines on AWS - Implemented CI/CD pipelines using GitHub Actions Education: BS Computer Science, IBA Karachi, 2020', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 15.0, 'jobCategory': 'UET Peshawar', 'isShortlisted': False}}}
+2026-08-21 05:52:48,636 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:48] "GET /api/task/0aac5f15-8076-4580-8d29-e8f4a12f747a HTTP/1.1" 200 -
+2026-08-21 05:52:51,406 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:51] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:52:51,754 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:52:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:53:21,313 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:53:21] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:53:21,651 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:53:21] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:53:52,018 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:53:52] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:53:52,351 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:53:52] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:54:22,034 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:54:22] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:54:22,371 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:54:22] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:55:12,319 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:55:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:55:12,650 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:55:12] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:56:12,308 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:56:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:56:12,647 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:56:12] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:57:12,347 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:57:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:57:12,686 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:57:12] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:58:12,359 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:58:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:58:12,700 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:58:12] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 05:59:12,357 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:59:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 05:59:12,701 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 05:59:12] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:00:11,209 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:00:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:00:11,549 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:00:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:01:11,225 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:01:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:01:11,558 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:01:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:02:11,214 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:02:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:02:11,558 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:02:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:03:11,227 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:03:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:03:11,573 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:03:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:04:11,222 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:04:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:04:11,563 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:04:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:05:11,238 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:05:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:05:11,574 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:05:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:06:11,227 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:06:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:06:11,565 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:06:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:07:11,202 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:07:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:07:11,544 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:07:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:08:11,270 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:08:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:08:11,605 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:08:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:09:11,227 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:09:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:09:11,572 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:09:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:10:11,256 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:10:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:10:11,597 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:10:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:10:49,233 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:10:49] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:10:49,584 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:10:49] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:11:20,953 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:11:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:11:21,297 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:11:21] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:12:11,130 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:12:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:12:11,482 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:12:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:13:11,252 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:13:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:13:11,596 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:13:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:14:11,254 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:14:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:14:11,605 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:14:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:15:11,092 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:15:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:15:11,433 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:15:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:16:10,991 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:16:10] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:16:11,341 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:16:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:17:11,019 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:17:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:17:11,368 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:17:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:18:11,175 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:18:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:18:11,519 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:18:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:19:11,090 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:19:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:19:11,431 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:19:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:20:11,105 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:20:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:20:11,443 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:20:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:21:11,053 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:21:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:21:11,327 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:21:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:22:11,023 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:22:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:22:11,364 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:22:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:23:11,081 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:23:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:23:11,419 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:23:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:24:11,054 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:24:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:24:11,405 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:24:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:25:11,087 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:25:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:25:11,437 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:25:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:26:11,086 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:26:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:26:11,430 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:26:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:27:11,084 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:27:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:27:11,428 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:27:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:28:11,109 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:28:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:28:11,456 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:28:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:29:11,086 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:29:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:29:11,426 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:29:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:30:11,083 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:30:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:30:11,417 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:30:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:31:11,053 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:31:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:31:11,389 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:31:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:32:10,950 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:32:10] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:32:11,301 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:32:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:33:11,000 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:33:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:33:11,340 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:33:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:34:11,046 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:34:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:34:11,396 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:34:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:35:13,269 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:35:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:35:13,609 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:35:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:36:13,308 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:36:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:36:13,649 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:36:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:37:13,424 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:37:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:37:13,783 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:37:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:38:13,381 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:38:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:38:13,730 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:38:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:39:13,212 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:39:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:39:13,555 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:39:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:40:13,314 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:40:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:40:13,651 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:40:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:41:13,412 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:41:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:41:13,758 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:41:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:41:49,727 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:41:49] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:41:50,065 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:41:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:42:19,984 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:42:19] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:42:20,338 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:42:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:42:50,508 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:42:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:42:50,852 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:42:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:43:19,952 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:43:19] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:43:20,297 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:43:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:43:49,939 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:43:49] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:43:50,295 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:43:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:44:13,187 - nlp_service - INFO - Resume processing request received
+2026-08-21 06:44:13,190 - nlp_service - INFO - Processing file: resume-1787276653150-36701639.pdf (.pdf)
+2026-08-21 06:44:13,191 - nlp_service - INFO - Received job category: Python Developer
+2026-08-21 06:44:13,192 - nlp_service - INFO - Normalized to internal category: python_developer
+2026-08-21 06:44:13,192 - nlp_service - INFO - Required skills: ['Python', 'Flask/Django', 'API Development', 'SQL', 'Git']
+2026-08-21 06:44:13,195 - nlp_service - INFO - Saved resume: temp_uploads/resume-1787276653150-36701639.pdf
+2026-08-21 06:44:13,196 - utils.extract_text - INFO - Extracting text from temp_uploads/resume-1787276653150-36701639.pdf with extension .pdf
+2026-08-21 06:44:13,196 - utils.extract_text - INFO - First bytes of file: 255044462d312e37
+2026-08-21 06:44:13,197 - utils.extract_text - INFO - Extracting text from PDF using PyPDF2: temp_uploads/resume-1787276653150-36701639.pdf
+2026-08-21 06:44:13,391 - utils.extract_text - INFO - Successfully extracted 4065 characters with PyPDF2
+2026-08-21 06:44:13,393 - nlp_service - INFO - Text extraction successful. Preview: Silal Khan Full Stack Developer Peshawar, Pakistan, 25000 | silalnoor999@gmail.com | +92 -3169277567...
+2026-08-21 06:44:13,441 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:44:13,443 - nlp_service - INFO - Resume processing queued: resume-1787276653150-36701639.pdf, Task ID: 59b5dff7-865c-4c32-8560-b12e4413efe1, Category: Python Developer
+2026-08-21 06:44:13,444 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:13] "[35m[1mPOST /api/process HTTP/1.1[0m" 202 -
+2026-08-21 06:44:13,476 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:44:13,479 - nlp_service - INFO - Checking status for task 59b5dff7-865c-4c32-8560-b12e4413efe1: STARTED
+2026-08-21 06:44:13,481 - nlp_service - INFO - Returning response for task 59b5dff7-865c-4c32-8560-b12e4413efe1: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2026-08-21 06:44:13,483 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:13] "GET /api/task/59b5dff7-865c-4c32-8560-b12e4413efe1 HTTP/1.1" 200 -
+2026-08-21 06:44:13,506 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 06:44:13,507 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 06:44:13,507 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:13] "[35m[1mOPTIONS /api/api/task/59b5dff7-865c-4c32-8560-b12e4413efe1 HTTP/1.1[0m" 500 -
+2026-08-21 06:44:13,848 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 06:44:13,849 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 06:44:13,850 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:13] "[35m[1mOPTIONS /api/api/task/59b5dff7-865c-4c32-8560-b12e4413efe1 HTTP/1.1[0m" 500 -
+2026-08-21 06:44:12,099 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:44:12,101 - nlp_service - INFO - Checking status for task 59b5dff7-865c-4c32-8560-b12e4413efe1: STARTED
+2026-08-21 06:44:12,103 - nlp_service - INFO - Returning response for task 59b5dff7-865c-4c32-8560-b12e4413efe1: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2026-08-21 06:44:12,103 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:12] "GET /api/task/59b5dff7-865c-4c32-8560-b12e4413efe1 HTTP/1.1" 200 -
+2026-08-21 06:44:14,154 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:44:14,156 - nlp_service - INFO - Checking status for task 59b5dff7-865c-4c32-8560-b12e4413efe1: SUCCESS
+2026-08-21 06:44:14,156 - nlp_service - INFO - Task 59b5dff7-865c-4c32-8560-b12e4413efe1 result: {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Silal Khan Full Stack Developer', 'contactInfo': {'email': 'silalnoor999@gmail.com', 'phone': '3169277567', 'linkedin': 'linkedin.com/in/silalkhan', 'address': 'Pakistan, React.js, Cursor, Express.js, NCCS, Flask, Urdu'}, 'skills': ['full stack', 'react native', 'api development', 'penetration testing', 'ethical hacking', 'cybersecurity', 'Python', 'git', 'nlp', 'mobile', 'ai', 'css', 'express', 'mysql', 'assessment', 'authentication', 'cloud', 'frontend', 'Javascript', 'security', 'mongodb', 'backend', 'React', 'github', 'flask', 'docker', 'node.js', 'Typescript'], 'education': [{'institution': 'silalnoor999@gmail.com', 'degree': '', 'field': 'building scalable web and mobile applic', 'year': ''}, {'institution': 'API', 'degree': '', 'field': 'React', 'year': ''}, {'institution': 'MERN', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Resume Screening System', 'degree': 'As', 'field': '', 'year': ''}, {'institution': 'UET Peshawar', 'degree': '', 'field': '', 'year': '2023'}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': '• Enabled', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': 'Bachelor', 'field': 'Engineering and Technology', 'year': '2025'}, {'institution': 'Project Management', 'degree': '', 'field': '', 'year': ''}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 60.7, 'jobCategory': 'Python Developer', 'isShortlisted': False}}
+2026-08-21 06:44:14,156 - nlp_service - INFO - Returning response for task 59b5dff7-865c-4c32-8560-b12e4413efe1: {'success': True, 'status': 'completed', 'result': {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Silal Khan Full Stack Developer', 'contactInfo': {'email': 'silalnoor999@gmail.com', 'phone': '3169277567', 'linkedin': 'linkedin.com/in/silalkhan', 'address': 'Pakistan, React.js, Cursor, Express.js, NCCS, Flask, Urdu'}, 'skills': ['full stack', 'react native', 'api development', 'penetration testing', 'ethical hacking', 'cybersecurity', 'Python', 'git', 'nlp', 'mobile', 'ai', 'css', 'express', 'mysql', 'assessment', 'authentication', 'cloud', 'frontend', 'Javascript', 'security', 'mongodb', 'backend', 'React', 'github', 'flask', 'docker', 'node.js', 'Typescript'], 'education': [{'institution': 'silalnoor999@gmail.com', 'degree': '', 'field': 'building scalable web and mobile applic', 'year': ''}, {'institution': 'API', 'degree': '', 'field': 'React', 'year': ''}, {'institution': 'MERN', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Resume Screening System', 'degree': 'As', 'field': '', 'year': ''}, {'institution': 'UET Peshawar', 'degree': '', 'field': '', 'year': '2023'}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': '• Enabled', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': 'Bachelor', 'field': 'Engineering and Technology', 'year': '2025'}, {'institution': 'Project Management', 'degree': '', 'field': '', 'year': ''}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 60.7, 'jobCategory': 'Python Developer', 'isShortlisted': False}}}
+2026-08-21 06:44:14,158 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:14] "GET /api/task/59b5dff7-865c-4c32-8560-b12e4413efe1 HTTP/1.1" 200 -
+2026-08-21 06:44:20,025 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:44:20,380 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:44:49,960 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:49] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:44:50,304 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:44:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:45:10,731 - nlp_service - INFO - Resume processing request received
+2026-08-21 06:45:10,734 - nlp_service - INFO - Processing file: resume-1787276710717-945431678.pdf (.pdf)
+2026-08-21 06:45:10,734 - nlp_service - INFO - Received job category: Web Developer
+2026-08-21 06:45:10,734 - nlp_service - INFO - Normalized to internal category: web_developer
+2026-08-21 06:45:10,735 - nlp_service - INFO - Required skills: ['JavaScript', 'React.js', 'Node.js', 'HTML', 'CSS', 'MongoDB']
+2026-08-21 06:45:10,735 - nlp_service - INFO - Saved resume: temp_uploads/resume-1787276710717-945431678.pdf
+2026-08-21 06:45:10,735 - utils.extract_text - INFO - Extracting text from temp_uploads/resume-1787276710717-945431678.pdf with extension .pdf
+2026-08-21 06:45:10,736 - utils.extract_text - INFO - First bytes of file: 255044462d312e37
+2026-08-21 06:45:10,736 - utils.extract_text - INFO - Extracting text from PDF using PyPDF2: temp_uploads/resume-1787276710717-945431678.pdf
+2026-08-21 06:45:10,825 - utils.extract_text - INFO - Successfully extracted 4065 characters with PyPDF2
+2026-08-21 06:45:10,826 - nlp_service - INFO - Text extraction successful. Preview: Silal Khan Full Stack Developer Peshawar, Pakistan, 25000 | silalnoor999@gmail.com | +92 -3169277567...
+2026-08-21 06:45:10,837 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:45:10,839 - nlp_service - INFO - Resume processing queued: resume-1787276710717-945431678.pdf, Task ID: 177252b3-4a0f-4ea4-a3ff-5d473060ac19, Category: Web Developer
+2026-08-21 06:45:10,840 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:10] "[35m[1mPOST /api/process HTTP/1.1[0m" 202 -
+2026-08-21 06:45:10,870 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:45:10,871 - nlp_service - INFO - Checking status for task 177252b3-4a0f-4ea4-a3ff-5d473060ac19: STARTED
+2026-08-21 06:45:10,873 - nlp_service - INFO - Returning response for task 177252b3-4a0f-4ea4-a3ff-5d473060ac19: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2026-08-21 06:45:10,875 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:10] "GET /api/task/177252b3-4a0f-4ea4-a3ff-5d473060ac19 HTTP/1.1" 200 -
+2026-08-21 06:45:10,895 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 06:45:10,896 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 06:45:10,896 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:10] "[35m[1mOPTIONS /api/api/task/177252b3-4a0f-4ea4-a3ff-5d473060ac19 HTTP/1.1[0m" 500 -
+2026-08-21 06:45:11,238 - nlp_service - ERROR - Unhandled error: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-08-21 06:45:11,238 - nlp_service - ERROR - Traceback (most recent call last):
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 891, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/app.py", line 500, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/flask/ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/home/sk/work-space/fyp-ai-resume-screening-tool/nlp/venv/lib/python3.10/site-packages/werkzeug/routing/map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+2026-08-21 06:45:11,239 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:11] "[35m[1mOPTIONS /api/api/task/177252b3-4a0f-4ea4-a3ff-5d473060ac19 HTTP/1.1[0m" 500 -
+2026-08-21 06:45:11,893 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:45:11,894 - nlp_service - INFO - Checking status for task 177252b3-4a0f-4ea4-a3ff-5d473060ac19: STARTED
+2026-08-21 06:45:11,895 - nlp_service - INFO - Returning response for task 177252b3-4a0f-4ea4-a3ff-5d473060ac19: {'success': True, 'status': 'started', 'message': 'Task is in progress'}
+2026-08-21 06:45:11,896 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:11] "GET /api/task/177252b3-4a0f-4ea4-a3ff-5d473060ac19 HTTP/1.1" 200 -
+2026-08-21 06:45:13,943 - redis.connection - DEBUG - Failed to enable maintenance notifications: Unknown subcommand or wrong number of arguments for 'MAINT_NOTIFICATIONS'. Try CLIENT HELP
+2026-08-21 06:45:13,944 - nlp_service - INFO - Checking status for task 177252b3-4a0f-4ea4-a3ff-5d473060ac19: SUCCESS
+2026-08-21 06:45:13,945 - nlp_service - INFO - Task 177252b3-4a0f-4ea4-a3ff-5d473060ac19 result: {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Silal Khan Full Stack Developer', 'contactInfo': {'email': 'silalnoor999@gmail.com', 'phone': '3169277567', 'linkedin': 'linkedin.com/in/silalkhan', 'address': 'Pakistan, React.js, Cursor, Express.js, NCCS, Flask, Urdu'}, 'skills': ['full stack', 'react native', 'penetration testing', 'ethical hacking', 'cybersecurity', 'Python', 'git', 'nlp', 'mobile', 'ai', 'css', 'express', 'mysql', 'react.js', 'assessment', 'authentication', 'cloud', 'frontend', 'Javascript', 'security', 'mongodb', 'backend', 'React', 'github', 'flask', 'docker', 'node.js', 'Typescript'], 'education': [{'institution': 'silalnoor999@gmail.com', 'degree': '', 'field': 'building scalable web and mobile applic', 'year': ''}, {'institution': 'API', 'degree': '', 'field': 'React', 'year': ''}, {'institution': 'MERN', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Resume Screening System', 'degree': 'As', 'field': '', 'year': ''}, {'institution': 'UET Peshawar', 'degree': '', 'field': '', 'year': '2023'}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': '• Enabled', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': 'Bachelor', 'field': 'Engineering and Technology', 'year': '2025'}, {'institution': 'Project Management', 'degree': '', 'field': '', 'year': ''}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 80.8, 'jobCategory': 'Web Developer', 'isShortlisted': True}}
+2026-08-21 06:45:13,945 - nlp_service - INFO - Returning response for task 177252b3-4a0f-4ea4-a3ff-5d473060ac19: {'success': True, 'status': 'completed', 'result': {'success': True, 'message': 'Resume processed successfully', 'data': {'candidateName': 'Silal Khan Full Stack Developer', 'contactInfo': {'email': 'silalnoor999@gmail.com', 'phone': '3169277567', 'linkedin': 'linkedin.com/in/silalkhan', 'address': 'Pakistan, React.js, Cursor, Express.js, NCCS, Flask, Urdu'}, 'skills': ['full stack', 'react native', 'penetration testing', 'ethical hacking', 'cybersecurity', 'Python', 'git', 'nlp', 'mobile', 'ai', 'css', 'express', 'mysql', 'react.js', 'assessment', 'authentication', 'cloud', 'frontend', 'Javascript', 'security', 'mongodb', 'backend', 'React', 'github', 'flask', 'docker', 'node.js', 'Typescript'], 'education': [{'institution': 'silalnoor999@gmail.com', 'degree': '', 'field': 'building scalable web and mobile applic', 'year': ''}, {'institution': 'API', 'degree': '', 'field': 'React', 'year': ''}, {'institution': 'MERN', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Resume Screening System', 'degree': 'As', 'field': '', 'year': ''}, {'institution': 'UET Peshawar', 'degree': '', 'field': '', 'year': '2023'}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': '', 'field': '', 'year': ''}, {'institution': '• Enabled', 'degree': '', 'field': '', 'year': ''}, {'institution': 'Node.js', 'degree': 'Bachelor', 'field': 'Engineering and Technology', 'year': '2025'}, {'institution': 'Project Management', 'degree': '', 'field': '', 'year': ''}], 'experience': [{'company': 'Company', 'position': 'Professional', 'duration': '1 year', 'description': 'Worked on various projects and responsibilities'}], 'projects': [], 'matchScore': 80.8, 'jobCategory': 'Web Developer', 'isShortlisted': True}}}
+2026-08-21 06:45:13,946 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:13] "GET /api/task/177252b3-4a0f-4ea4-a3ff-5d473060ac19 HTTP/1.1" 200 -
+2026-08-21 06:45:20,043 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:45:20,399 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:45:50,649 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:45:50,996 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:45:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:46:20,629 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:46:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:46:20,964 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:46:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:46:50,611 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:46:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:46:50,946 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:46:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:48:13,462 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:48:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:48:13,747 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:48:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:49:13,231 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:49:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:49:13,571 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:49:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:50:15,756 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:50:15] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:50:16,074 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:50:16] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:51:13,222 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:51:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:51:13,495 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:51:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:52:12,664 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:52:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:52:13,002 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:52:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:53:12,851 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:53:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:53:13,186 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:53:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:53:33,612 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:53:33] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:53:33,960 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:53:33] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:53:51,430 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:53:51] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:53:51,771 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:53:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:54:21,368 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:54:21] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:54:21,708 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:54:21] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:55:12,944 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:55:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:55:13,278 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:55:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:56:12,925 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:56:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:56:13,261 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:56:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:57:12,925 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:57:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:57:13,264 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:57:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:58:09,841 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:58:09] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:58:10,192 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:58:10] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:58:20,201 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:58:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:58:20,554 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:58:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:58:50,204 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:58:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:58:50,546 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:58:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 06:59:20,171 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:59:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 06:59:20,511 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 06:59:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:00:12,859 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:00:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:00:13,206 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:00:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:00:31,583 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:00:31] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:00:31,939 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:00:31] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:00:50,147 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:00:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:00:50,480 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:00:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:01:20,030 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:01:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:01:20,383 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:01:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:02:12,801 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:02:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:02:13,142 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:02:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:02:26,727 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:02:26] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:02:27,062 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:02:27] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:02:50,049 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:02:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:02:50,398 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:02:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:03:20,061 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:03:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:03:20,394 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:03:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:03:50,154 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:03:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:03:50,501 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:03:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:05:13,154 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:05:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:05:13,426 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:05:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:06:12,851 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:06:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:06:13,186 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:06:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:06:48,744 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:06:48] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:06:49,093 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:06:49] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:07:20,135 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:07:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:07:20,484 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:07:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:07:52,612 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:07:52] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:07:52,961 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:07:52] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:09:14,277 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:09:14] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:09:14,563 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:09:14] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:10:13,064 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:10:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:10:13,413 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:10:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:11:13,028 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:11:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:11:13,376 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:11:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:12:12,921 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:12:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:12:13,271 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:12:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:13:12,998 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:13:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:13:13,335 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:13:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:14:12,948 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:14:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:14:13,295 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:14:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:15:00,994 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:15:00] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:15:01,334 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:15:01] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:15:20,276 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:15:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:15:20,609 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:15:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:15:50,025 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:15:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:15:50,367 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:15:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:16:31,925 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:16:31] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:16:32,281 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:16:32] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:16:50,123 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:16:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:16:50,461 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:16:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:17:20,044 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:17:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:17:20,386 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:17:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:18:12,957 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:18:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:18:13,296 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:18:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:18:20,214 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:18:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:18:20,560 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:18:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:18:50,052 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:18:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:18:50,395 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:18:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:20:13,212 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:20:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:20:13,481 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:20:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:21:13,211 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:21:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:21:13,493 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:21:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:22:10,817 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:22:10] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:22:11,155 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:22:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:22:20,125 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:22:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:22:20,470 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:22:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:22:50,208 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:22:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:22:50,552 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:22:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:24:13,103 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:24:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:24:13,389 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:24:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:25:12,917 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:25:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:25:13,263 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:25:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:26:12,815 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:26:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:26:13,161 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:26:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:27:12,706 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:27:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:27:13,057 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:27:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:28:12,792 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:28:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:28:13,125 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:28:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:29:12,917 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:29:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:29:13,266 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:29:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:30:12,814 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:30:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:30:13,150 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:30:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:31:12,914 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:31:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:31:13,256 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:31:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:32:12,811 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:32:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:32:13,160 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:32:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:33:12,811 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:33:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:33:13,148 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:33:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:34:12,688 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:34:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:34:13,022 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:34:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:35:12,801 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:35:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:35:13,153 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:35:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:36:12,753 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:36:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:36:13,099 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:36:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:37:12,823 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:37:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:37:13,165 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:37:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:38:12,722 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:38:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:38:13,063 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:38:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:39:00,833 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:39:00] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:39:01,171 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:39:01] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:39:19,447 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:39:19] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:39:19,796 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:39:19] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:39:50,026 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:39:50] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:39:50,377 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:39:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:40:20,014 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:40:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:40:20,357 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:40:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:40:49,969 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:40:49] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:40:50,308 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:40:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:41:19,969 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:41:19] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:41:20,313 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:41:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:41:49,401 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:41:49] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:41:49,743 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:41:49] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:42:22,491 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:42:22] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:42:22,834 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:42:22] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:42:51,385 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:42:51] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:42:51,726 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:42:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:43:20,743 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:43:20] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:43:21,098 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:43:21] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:43:51,334 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:43:51] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:43:51,673 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:43:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:44:21,377 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:44:21] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:44:21,725 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:44:21] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:44:51,356 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:44:51] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:44:51,703 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:44:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:45:21,277 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:45:21] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:45:21,614 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:45:21] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:46:04,656 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:46:04] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:46:04,999 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:46:04] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:46:21,254 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:46:21] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:46:21,597 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:46:21] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:46:51,359 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:46:51] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:46:51,695 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:46:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:48:13,129 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:48:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:48:13,408 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:48:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:49:12,932 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:49:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:49:13,269 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:49:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:50:12,820 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:50:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:50:13,170 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:50:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:51:13,240 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:51:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:51:13,517 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:51:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:52:12,890 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:52:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:52:13,236 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:52:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:53:12,848 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:53:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:53:13,182 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:53:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:54:13,436 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:54:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:54:13,797 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:54:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:54:53,693 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:54:53] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:54:54,052 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:54:54] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:55:22,362 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:55:22] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:55:20,246 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:55:20] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:55:49,950 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:55:49] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:55:50,296 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:55:50] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:57:13,061 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:57:13] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:57:13,326 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:57:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:58:12,759 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:58:12] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:58:13,101 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:58:13] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 07:59:11,372 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:59:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 07:59:11,708 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 07:59:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:00:11,407 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:00:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:00:11,745 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:00:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:01:11,508 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:01:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:01:11,851 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:01:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:02:11,442 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:02:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:02:11,781 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:02:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:03:11,494 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:03:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:03:11,835 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:03:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:04:11,417 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:04:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:04:11,767 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:04:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:05:11,457 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:05:11] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:05:11,794 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:05:11] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:05:36,628 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:05:36] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:05:36,974 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:05:36] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:05:51,151 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:05:51] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:05:51,496 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:05:51] "GET /api/health HTTP/1.1" 200 -
+2026-08-21 08:06:21,197 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:06:21] "OPTIONS /api/health HTTP/1.1" 200 -
+2026-08-21 08:06:21,545 - werkzeug - INFO - 127.0.0.1 - - [21/Aug/2026 08:06:21] "GET /api/health HTTP/1.1" 200 -

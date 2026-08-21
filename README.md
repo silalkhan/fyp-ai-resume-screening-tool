@@ -7,7 +7,25 @@
 
 An intelligent web application for automated resume screening against job descriptions using NLP and machine learning.
 
-![Demo Screenshot](https://raw.githubusercontent.com/silalkhan/fyp-ai-resume-screening-tool/main/frontend/public/logo192.png)
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+The Home Page is the main entry point of the application. It provides users with access to the AI Resume Screening Tool and the resume screening workflow.
+
+![Home Page](./screenshorts/Screenshot%202026-08-21%20033751.png)
+
+### Admin Dashboard
+
+The admin dashboard provides an overview of uploaded resumes, shortlisted candidates, and available job positions. It also provides quick actions for uploading resumes, adding jobs, and reviewing candidates.
+
+![Admin Dashboard](./screenshorts/image.png)
+
+### Resume Analysis Result
+
+After resume processing, the system presents the candidate's analysis, including the match score, resume information, contact information, and skills analysis.
+
+![Resume Analysis Result](./screenshorts/Screenshot%202026-08-21%20055059.png)
 
 ## Academic Context
 
